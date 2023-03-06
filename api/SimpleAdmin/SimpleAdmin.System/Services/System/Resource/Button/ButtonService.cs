@@ -44,12 +44,12 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
 
 
     /// <inheritdoc />
-    public async Task<List<long>> AddBatch(ButtonAddInput input)
+    public async Task<List<string>> AddBatch(ButtonAddInput input)
     {
         List<SysResource> sysResources = new List<SysResource>();//按钮列表
         var codeList = new List<string>() { "Add", "Edit", "Delete", "BatchDelete", };//code后缀
         var titleList = new List<string>() { "新增", "编辑", "删除", "批量删除" };//title前缀
-        var idList = new List<long>();//Id列表
+        var idList = new List<string>();//Id列表
         for (int i = 0; i < codeList.Count; i++)
         {
             var id = CommonUtils.GetSingleId();
@@ -76,7 +76,7 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
         }
         else
         {
-            return new List<long>();
+            return new List<string>();
         }
 
 

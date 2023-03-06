@@ -155,7 +155,7 @@ namespace SimpleAdmin.System
         /// </summary>
         /// <param name="fileId"></param>
         /// <param name="file"></param>
-        private async Task<string> StorageLocal(long fileId, IFormFile file)
+        private async Task<string> StorageLocal(string fileId, IFormFile file)
         {
             string uploadFileFolder;
             string configKey = string.Empty;
@@ -203,7 +203,7 @@ namespace SimpleAdmin.System
         /// <param name="file"></param>
         /// <returns></returns>
 
-        private async Task<string> StorageMinio(long fileId, IFormFile file)
+        private async Task<string> StorageMinio(string fileId, IFormFile file)
         {
             var minioService = App.GetService<MinioUtils>();
             var now = DateTime.Now.ToString("d");

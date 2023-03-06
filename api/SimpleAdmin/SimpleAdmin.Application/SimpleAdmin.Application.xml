@@ -577,7 +577,7 @@
             <param name="sysUser"></param>
             <param name="operate">操作类型</param>
         </member>
-        <member name="M:SimpleAdmin.Application.UserService.CheckPermission(System.Int64,System.String,System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.Application.UserService.CheckPermission(System.String,System.String,System.Collections.Generic.List{System.String})">
             <summary>
             检查权限
             </summary>
@@ -586,7 +586,7 @@
             <param name="dataScope">数据范围</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.Application.UserService.CheckImport(System.Collections.Generic.List{SimpleAdmin.Application.BizUserImportInput},System.Collections.Generic.List{System.Int64},System.Boolean)">
+        <member name="M:SimpleAdmin.Application.UserService.CheckImport(System.Collections.Generic.List{SimpleAdmin.Application.BizUserImportInput},System.Collections.Generic.List{System.String},System.Boolean)">
             <summary>
             检查导入数据
             </summary>

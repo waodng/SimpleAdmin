@@ -13,7 +13,7 @@ public partial interface ISysUserService : ITransient
     /// </summary>
     /// <param name="userId"></param>
     /// <returns></returns>
-    Task<List<string>> GetButtonCodeList(long userId);
+    Task<List<string>> GetButtonCodeList(string userId);
 
     /// <summary>
     /// 根据账号获取用户信息
@@ -28,14 +28,14 @@ public partial interface ISysUserService : ITransient
     /// <param name="userId"></param>
     /// <param name="orgId"></param>
     /// <returns></returns>
-    Task<List<DataScope>> GetPermissionListByUserId(long userId, long orgId);
+    Task<List<DataScope>> GetPermissionListByUserId(string userId, string orgId);
 
     /// <summary>
     /// 根据手机号获取用户账号
     /// </summary>
     /// <param name="phone">手机号</param>
     /// <returns>用户账号名称</returns>
-    Task<long> GetIdByPhone(string phone);
+    Task<string> GetIdByPhone(string phone);
 
     /// <summary>
     /// 用户选择器
@@ -63,14 +63,14 @@ public partial interface ISysUserService : ITransient
     /// </summary>
     /// <param name="Id">用户ID</param>
     /// <returns>用户信息</returns>
-    Task<SysUser> GetUserById(long Id);
+    Task<SysUser> GetUserById(string Id);
 
     /// <summary>
     ///根据用户账号获取用户ID
     /// </summary>
     /// <param name="account">用户账号</param>
     /// <returns></returns>
-    Task<long> GetIdByAccount(string account);
+    Task<string> GetIdByAccount(string account);
 
     /// <summary>
     /// 根据用户手机获取用户信息
@@ -84,14 +84,14 @@ public partial interface ISysUserService : ITransient
     /// </summary>
     /// <param name="input">用户ID</param>
     /// <returns></returns>
-    Task<List<long>> OwnRole(BaseIdInput input);
+    Task<List<string>> OwnRole(BaseIdInput input);
 
     /// <summary>
     /// 获取当前API用户的数据范围
     /// </summary>
     /// <param name="userId">用户ID</param>
     /// <returns>机构列表</returns>
-    Task<List<long>> GetLoginUserApiDataScope();
+    Task<List<string>> GetLoginUserApiDataScope();
 
     #endregion
 
@@ -159,13 +159,13 @@ public partial interface ISysUserService : ITransient
     /// 从redis中删除用户信息
     /// </summary>
     /// <param name="ids">用户ID列表</param>
-    void DeleteUserFromRedis(List<long> ids);
+    void DeleteUserFromRedis(List<string> ids);
 
     /// <summary>
     /// 从redis中删除用户信息
     /// </summary>
     /// <param name="userId">用户ID</param>
-    void DeleteUserFromRedis(long userId);
+    void DeleteUserFromRedis(string userId);
     #endregion
 
 

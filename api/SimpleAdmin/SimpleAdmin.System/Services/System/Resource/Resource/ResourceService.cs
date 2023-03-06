@@ -261,14 +261,14 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     /// <param name="resourceList"></param>
     /// <param name="parentId"></param>
     /// <returns></returns>
-    public List<SysResource> GetResourceParent(List<SysResource> resourceList, long parentId)
+    public List<SysResource> GetResourceParent(List<SysResource> resourceList, string parentId)
     {
         //找上级资源ID列表
         var resources = resourceList.Where(it => it.Id == parentId).FirstOrDefault();
         if (resources != null)//如果数量大于0
         {
             var data = new List<SysResource>();
-            var parents = GetResourceParent(resourceList, resources.ParentId.Value);
+            var parents = GetResourceParent(resourceList, resources.ParentId);
             data.AddRange(parents);//添加子节点;
             data.Add(resources);//添加到列表
             return data;//返回结果

@@ -35,7 +35,7 @@ public interface IResourceService : ITransient
     /// <param name="ids">id列表</param>
     /// <param name="category">分类</param>
     /// <returns>Code列表</returns>
-    Task<List<string>> GetCodeByIds(List<long> ids, string category);
+    Task<List<string>> GetCodeByIds(List<string> ids, string category);
 
     /// <summary>
     /// 获取资源列表

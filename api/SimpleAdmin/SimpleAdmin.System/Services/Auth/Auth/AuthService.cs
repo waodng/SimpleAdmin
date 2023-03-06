@@ -193,7 +193,7 @@ public class AuthService : IAuthService
         if (loginClientType == LoginClientTypeEnum.B)//B端登录
         {
             var userId = await _userService.GetIdByPhone(input.Phone);//获取用户名
-            if (userId == 0)
+            if (string.IsNullOrEmpty(userId))
             {
                 throw Oops.Bah("手机号不存在");//手机号不存在
             }

@@ -9,12 +9,12 @@ public class UserSelectorOutPut
     /// <summary>
     /// Id
     /// </summary>
-    public long Id { get; set; }
+    public string Id { get; set; }
 
     /// <summary>
     /// 组织ID
     /// </summary>
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
     /// <summary>
     /// 账号

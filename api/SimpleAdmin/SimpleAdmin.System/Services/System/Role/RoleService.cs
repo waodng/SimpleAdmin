@@ -52,11 +52,11 @@ public class RoleService : DbRepository<SysRole>, IRoleService
     }
 
     /// <inheritdoc/>
-    public async Task<List<SysRole>> GetRoleListByUserId(long userId)
+    public async Task<List<SysRole>> GetRoleListByUserId(string userId)
     {
         List<SysRole> cods = new List<SysRole>();//角色代码集合
         var roleList = await _relationService.GetRelationListByObjectIdAndCategory(userId, CateGoryConst.Relation_SYS_USER_HAS_ROLE);//根据用户ID获取角色ID
-        var roleIdList = roleList.Select(x => x.TargetId.ToLong()).ToList();//角色ID列表
+        var roleIdList = roleList.Select(x => x.TargetId).ToList();//角色ID列表
         if (roleIdList.Count > 0)
         {
             cods = await GetListAsync(it => roleIdList.Contains(it.Id));
@@ -70,7 +70,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
     {
         var orgIds = await _sysOrgService.GetOrgChildIds(input.OrgId);//获取下级机构
         var query = Context.Queryable<SysRole>()
-                         .WhereIF(input.OrgId > 0, it => orgIds.Contains(it.OrgId))//根据组织
+                         .WhereIF(!string.IsNullOrEmpty(input.OrgId), it => orgIds.Contains(it.OrgId))//根据组织
                          .WhereIF(!string.IsNullOrEmpty(input.Category), it => it.Category == input.Category)//根据分类
                          .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Name.Contains(input.SearchKey))//根据关键字查询
                          .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")
@@ -314,10 +314,10 @@ public class RoleService : DbRepository<SysRole>, IRoleService
 
 
     /// <inheritdoc />
-    public async Task<List<long>> OwnUser(BaseIdInput input)
+    public async Task<List<string>> OwnUser(BaseIdInput input)
     {
         //获取关系列表
-        var relations = await _relationService.GetRelationListByTargetIdAndCategory(input.Id.ToString(), CateGoryConst.Relation_SYS_USER_HAS_ROLE);
+        var relations = await _relationService.GetRelationListByTargetIdAndCategory(input.Id, CateGoryConst.Relation_SYS_USER_HAS_ROLE);
         return relations.Select(it => it.ObjectId).ToList();
     }
 
@@ -333,7 +333,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
             sysRelations.Add(new SysRelation
             {
                 ObjectId = it,
-                TargetId = input.Id.ToString(),
+                TargetId = input.Id,
                 Category = CateGoryConst.Relation_SYS_USER_HAS_ROLE
             });
         });
@@ -342,14 +342,13 @@ public class RoleService : DbRepository<SysRole>, IRoleService
         var result = await itenant.UseTranAsync(async () =>
        {
            var relationRep = ChangeRepository<DbRepository<SysRelation>>();//切换仓储
-           var targetId = input.Id.ToString();//目标ID转string
-           await relationRep.DeleteAsync(it => it.TargetId == targetId && it.Category == CateGoryConst.Relation_SYS_USER_HAS_ROLE);//删除老的
+           await relationRep.DeleteAsync(it => it.TargetId == input.Id && it.Category == CateGoryConst.Relation_SYS_USER_HAS_ROLE);//删除老的
            await relationRep.InsertRangeAsync(sysRelations);//添加新的
        });
         if (result.IsSuccess)//如果成功了
         {
             await _relationService.RefreshCache(CateGoryConst.Relation_SYS_USER_HAS_ROLE);//刷新关系表SYS_USER_HAS_ROLE缓存
-            await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<long> { input.Id.Value });//清除角色下用户缓存
+            await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<string> { input.Id });//清除角色下用户缓存
 
         }
         else
@@ -384,7 +383,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
         List<string> permissionTreeSelectors = new List<string>();//授权树结果集
         //获取角色资源关系
         var relationsRes = await _relationService.GetRelationByCategory(CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE);
-        var menuIds = relationsRes.Where(it => it.ObjectId == input.Id).Select(it => it.TargetId.ToLong()).ToList();
+        var menuIds = relationsRes.Where(it => it.ObjectId == input.Id).Select(it => it.TargetId).ToList();
         if (menuIds.Any())
         {
             //获取菜单信息
@@ -440,7 +439,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
     /// </summary>
     /// <param name="menuIds"></param>
     /// <returns></returns>
-    private async Task<List<SysResource>> GetMenuByMenuIds(List<long> menuIds)
+    private async Task<List<SysResource>> GetMenuByMenuIds(List<string> menuIds)
     {
         //获取所有菜单
         var menuList = await _resourceService.GetListByCategory(CateGoryConst.Resource_MENU);

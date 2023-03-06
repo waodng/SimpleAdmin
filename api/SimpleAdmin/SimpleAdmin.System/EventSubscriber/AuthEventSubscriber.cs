@@ -44,7 +44,7 @@ public class AuthEventSubscriber : IEventSubscriber, ISingleton
         #endregion
         //更新用户信息
         if (await _db.UpdateableWithAttr(sysUser).ExecuteCommandAsync() > 0)
-            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id.ToString(), sysUser); //更新Redis信息
+            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id, sysUser); //更新Redis信息
         await Task.CompletedTask;
     }
 

@@ -18,7 +18,7 @@ public interface IRelationService : ITransient
     /// <param name="objectId">对象ID</param>
     /// <param name="category">分类</param>
     /// <returns></returns>
-    Task<List<SysRelation>> GetRelationListByObjectIdAndCategory(long objectId, string category);
+    Task<List<SysRelation>> GetRelationListByObjectIdAndCategory(string objectId, string category);
 
     /// <summary>
     /// 通过对象ID列表和分类获取关系列表
@@ -26,7 +26,7 @@ public interface IRelationService : ITransient
     /// <param name="objectIds">对象ID</param>
     /// <param name="category">分类</param>
     /// <returns></returns>
-    Task<List<SysRelation>> GetRelationListByObjectIdListAndCategory(List<long> objectIds, string category);
+    Task<List<SysRelation>> GetRelationListByObjectIdListAndCategory(List<string> objectIds, string category);
 
     /// <summary>
     /// 通过目标ID和分类获取关系列表
@@ -51,7 +51,7 @@ public interface IRelationService : ITransient
     /// </summary>
     /// <param name="userId">用户ID</param>
     /// <returns>关系表数据</returns>
-    Task<SysRelation> GetWorkbench(long userId);
+    Task<SysRelation> GetWorkbench(string userId);
 
     /// <summary>
     /// 更新缓存
@@ -70,7 +70,7 @@ public interface IRelationService : ITransient
     /// <param name="clear">是否清除老的数据</param>
     /// <param name="refreshCache">是否刷新缓存</param>
     /// <returns></returns>
-    Task SaveRelation(string category, long objectId, string targetId, string extJson, bool clear, bool refreshCache = true);
+    Task SaveRelation(string category, string objectId, string targetId, string extJson, bool clear, bool refreshCache = true);
 
     /// <summary>
     /// 批量保存关系
@@ -81,5 +81,5 @@ public interface IRelationService : ITransient
     /// <param name="extJsons">拓展信息列表</param>
     /// <param name="clear">是否清除老的数据</param>
     /// <returns></returns>
-    Task SaveRelationBatch(string category, long objectId, List<string> targetIds, List<string> extJsons, bool clear);
+    Task SaveRelationBatch(string category, string objectId, List<string> targetIds, List<string> extJsons, bool clear);
 }

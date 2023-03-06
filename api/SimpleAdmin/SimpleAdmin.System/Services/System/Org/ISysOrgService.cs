@@ -19,7 +19,7 @@ public interface ISysOrgService : ITransient
     /// <param name="parentId">父Id</param>
     /// <param name="orgId">组织Id</param>
     /// <returns>是否存在,存在返回组织ID</returns>
-    bool IsExistOrgByName(List<SysOrg> sysOrgs, string orgName, long parentId, out long orgId);
+    bool IsExistOrgByName(List<SysOrg> sysOrgs, string orgName, string parentId, out string orgId);
 
     /// <summary>
     /// 组织详情
@@ -35,7 +35,7 @@ public interface ISysOrgService : ITransient
     /// <param name="orgId">组织ID</param>
     /// <param name="isContainOneself">是否包含自己</param>
     /// <returns></returns>
-    Task<List<SysOrg>> GetChildListById(long orgId, bool isContainOneself = true);
+    Task<List<SysOrg>> GetChildListById(string orgId, bool isContainOneself = true);
 
     /// <summary>
     /// 获取所有组织

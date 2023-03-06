@@ -90,7 +90,7 @@ public class ModuleService : DbRepository<SysResource>, IModuleService
 
                 await DeleteByIdsAsync(ids.Cast<object>().ToArray());//删除菜单和按钮
                 await Context.Deleteable<SysRelation>()//关系表删除对应SYS_ROLE_HAS_RESOURCE
-                .Where(it => it.Category == CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE && resourceIds.Contains(SqlFunc.ToInt64(it.TargetId))).ExecuteCommandAsync();
+                .Where(it => it.Category == CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE && resourceIds.Contains(it.TargetId)).ExecuteCommandAsync();
 
             });
             if (result.IsSuccess)//如果成功了

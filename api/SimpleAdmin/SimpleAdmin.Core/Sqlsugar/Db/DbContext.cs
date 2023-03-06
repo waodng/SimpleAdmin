@@ -136,10 +136,10 @@ public static class DbContext
             if (entityInfo.OperationType == DataFilterType.InsertByObject)
             {
                 // 主键(long类型)且没有值的---赋值雪花Id
-                if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(long))
+                if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(string))
                 {
                     var id = entityInfo.EntityColumnInfo.PropertyInfo.GetValue(entityInfo.EntityValue);
-                    if (id == null || (long)id == 0)
+                    if (id == null || string.IsNullOrEmpty(id.ToString()))
                         entityInfo.SetValue(CommonUtils.GetSingleId());
                 }
                 if (entityInfo.PropertyName == nameof(BaseEntity.CreateTime))

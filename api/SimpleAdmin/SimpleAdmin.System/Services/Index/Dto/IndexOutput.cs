@@ -12,5 +12,5 @@ public class ScheduleListOutput : RelationUserSchedule
     /// <summary>
     /// ID
     /// </summary>
-    public long Id { get; set; }
+    public string Id { get; set; }
 }

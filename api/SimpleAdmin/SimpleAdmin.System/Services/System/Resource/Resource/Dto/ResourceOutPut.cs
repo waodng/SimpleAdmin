@@ -9,7 +9,7 @@ public class ResTreeSelector
     /// <summary>
     /// 模块id
     /// </summary>
-    public long Id { get; set; }
+    public string Id { get; set; }
 
 
     /// <summary>
@@ -36,7 +36,7 @@ public class ResTreeSelector
         /// <summary>
         /// 菜单id
         /// </summary>
-        public long Id { get; set; }
+        public string Id { get; set; }
 
 
         /// <summary>
@@ -58,7 +58,7 @@ public class ResTreeSelector
         /// <summary>
         /// 模块id
         /// </summary>
-        public long Module { get; set; }
+        public string Module { get; set; }
 
 
         /// <summary>
@@ -73,7 +73,7 @@ public class ResTreeSelector
         /// <summary>
         /// 按钮id
         /// </summary>
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 标题

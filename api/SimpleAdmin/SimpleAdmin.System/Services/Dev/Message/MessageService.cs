@@ -18,9 +18,9 @@ public class MessageService : DbRepository<DevMessage>, IMessageService
     public async Task<SqlSugarPagedList<DevMessage>> Page(MessagePageInput input)
     {
         List<DevRelation> relations = new List<DevRelation>();//用户消息关系列表
-        if (input.ReceiveUserId > 0)//如果用户ID大于0
+        if (!string.IsNullOrEmpty(input.ReceiveUserId))//如果用户ID大于0
         {
-            var receiveUserId = input.ReceiveUserId.ToString();
+            var receiveUserId = input.ReceiveUserId;
             relations = await Context.Queryable<DevRelation>()//获取关系表中的站内信ID
                .Where(it => it.Category == CateGoryConst.Relation_MSG_TO_USER && it.TargetId == receiveUserId)//根据分类和用户用户ID查询
               .ToListAsync();
@@ -85,7 +85,7 @@ public class MessageService : DbRepository<DevMessage>, IMessageService
             var messageDetail = message.Adapt<MessageDetailOutPut>();//实体转换
             var relationRep = ChangeRepository<DbRepository<DevRelation>>();//切换仓促
             var relations = await relationRep.GetListAsync(it => it.ObjectId == message.Id && it.Category == CateGoryConst.Relation_MSG_TO_USER);
-            var myMessage = relations.Where(it => it.TargetId == UserManager.UserId.ToString()).FirstOrDefault();//查询是否发给自己
+            var myMessage = relations.Where(it => it.TargetId == UserManager.UserId).FirstOrDefault();//查询是否发给自己
             if (myMessage != null)
             {
                 myMessage.ExtJson = new RelationMsgUser { Read = true }.ToJson();//设置已读
@@ -115,7 +115,7 @@ public class MessageService : DbRepository<DevMessage>, IMessageService
                         //添加到已读列表
                         messageDetail.ReceiveInfoList.Add(new MessageDetailOutPut.ReceiveInfo
                         {
-                            ReceiveUserId = relation.TargetId.ToLong(),
+                            ReceiveUserId = relation.TargetId,
                             ReceiveUserName = "未知用户",
                             Read = relation.ExtJson.ToJsonEntity<RelationMsgUser>().Read
                         });

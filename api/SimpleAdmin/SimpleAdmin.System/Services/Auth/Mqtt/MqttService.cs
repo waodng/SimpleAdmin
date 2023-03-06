@@ -42,7 +42,7 @@ public class MqttService : IMqttService
         if (userName.ToLower() == "$username")
             userName = UserManager.UserAccount;
         else if (userName.ToLower() == "$userid")
-            userName = UserManager.UserId.ToString();
+            userName = UserManager.UserId;
         #endregion
         #region 密码特殊处理
         if (password.ToLower() == "$username")
@@ -68,7 +68,7 @@ public class MqttService : IMqttService
         if (user != null)
         {
             //获取用户token
-            var tokens = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, user.Id.ToString());
+            var tokens = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, user.Id);
             if (tokens != null)
             {
                 if (tokens.Any(it => it.Token == input.Password))//判断是否有token

@@ -37,7 +37,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
 
 
     /// <inheritdoc />
-    public async Task<SysOrg> GetSysOrgById(long id)
+    public async Task<SysOrg> GetSysOrgById(string id)
     {
         var sysOrg = await GetListAsync();
         var result = sysOrg.Where(it => it.Id == id).FirstOrDefault();
@@ -45,7 +45,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     }
 
     /// <inheritdoc />
-    public async Task<List<SysOrg>> GetChildListById(long orgId, bool isContainOneself = true)
+    public async Task<List<SysOrg>> GetChildListById(string orgId, bool isContainOneself = true)
     {
         //获取所有组织
         var sysOrgs = await GetListAsync();
@@ -61,10 +61,10 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     }
 
     /// <inheritdoc />
-    public async Task<List<long>> GetOrgChildIds(long orgId, bool isContainOneself = true)
+    public async Task<List<string>> GetOrgChildIds(string orgId, bool isContainOneself = true)
     {
-        var orgIds = new List<long>();//组织列表
-        if (orgId > 0)//如果orgid有值
+        var orgIds = new List<string>();//组织列表
+        if (!string.IsNullOrEmpty(orgId))//如果orgid有值
         {
             //获取所有子集
             var sysOrgs = await GetChildListById(orgId, isContainOneself);
@@ -77,7 +77,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     public async Task<SqlSugarPagedList<SysOrg>> Page(OrgPageInput input)
     {
         var query = Context.Queryable<SysOrg>()
-                         .WhereIF(input.ParentId > 0, it => it.ParentId == input.ParentId)//父级
+                         .WhereIF(!string.IsNullOrEmpty(input.ParentId), it => it.ParentId == input.ParentId)//父级
                          .WhereIF(input.OrgIds != null, it => input.OrgIds.Contains(it.Id))//机构ID查询
                          .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Name.Contains(input.SearchKey))//根据关键字查询
                          .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")
@@ -88,7 +88,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
 
 
     /// <inheritdoc />
-    public async Task<List<SysOrg>> Tree(List<long> orgIds = null)
+    public async Task<List<SysOrg>> Tree(List<string> orgIds = null)
     {
         //获取所有组织
         var sysOrgs = await GetListAsync();
@@ -114,7 +114,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
 
 
     /// <inheritdoc />
-    public List<SysOrg> GetOrgParents(List<SysOrg> allOrgList, long orgId, bool includeSelf = true)
+    public List<SysOrg> GetOrgParents(List<SysOrg> allOrgList, string orgId, bool includeSelf = true)
     {
         //找到组织
         var sysOrgs = allOrgList.Where(it => it.Id == orgId).FirstOrDefault();
@@ -131,9 +131,9 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     }
 
     /// <inheritdoc />
-    public bool IsExistOrgByName(List<SysOrg> sysOrgs, string orgName, long parentId, out long orgId)
+    public bool IsExistOrgByName(List<SysOrg> sysOrgs, string orgName, string parentId, out string orgId)
     {
-        orgId = 0;
+        orgId = SimpleAdminConst.Zero;
         var sysOrg = sysOrgs.Where(it => it.ParentId == parentId && it.Name == orgName).FirstOrDefault();
         if (sysOrg != null)
         {
@@ -161,9 +161,9 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     public async Task Copy(OrgCopyInput input)
     {
         var orgList = await GetListAsync();//获取所有
-        HashSet<long> ids = new HashSet<long>();//定义不重复Id集合
+        var ids = new HashSet<string>();//定义不重复Id集合
         var addOrgList = new List<SysOrg>();//添加机构列表
-        HashSet<long> alreadyIds = new HashSet<long>();//定义已经复制过得组织Id
+        var alreadyIds = new HashSet<string>();//定义已经复制过得组织Id
         ids.AddRange(input.Ids);//加到集合
         if (ids.Contains(input.TargetId))
             throw Oops.Bah($"不能包含自己");
@@ -203,7 +203,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
             //遍历机构重新赋值全称
             addOrgList.ForEach(it =>
             {
-                it.Names = it.ParentId == 0 ? it.Name : GetNames(orgList, it.ParentId, it.Name);
+                it.Names = it.ParentId == SimpleAdminConst.Zero ? it.Name : GetNames(orgList, it.ParentId, it.Name);
             });
 
             if (await InsertRangeAsync(addOrgList))//插入数据
@@ -238,7 +238,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
         if (ids.Count > 0)
         {
             var sysOrgs = await GetListAsync();//获取所有组织
-            var sysDeleteOrgList = new List<long>();//需要删除的组织ID集合
+            var sysDeleteOrgList = new List<string>();//需要删除的组织ID集合
             ids.ForEach(it =>
             {
                 var childen = GetSysOrgChilden(sysOrgs, it);//查找下级组织
@@ -269,7 +269,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
                 });
             }
             //判断组织下是否有角色
-            var hasRole = await Context.Queryable<SysRole>().Where(it => sysDeleteOrgList.Contains(it.OrgId.Value)).CountAsync() > 0;
+            var hasRole = await Context.Queryable<SysRole>().Where(it => sysDeleteOrgList.Contains(it.OrgId)).CountAsync() > 0;
             if (hasRole) throw Oops.Bah($"请先删除{name}下的角色");
             // 判断组织下是否有职位
             var hasPosition = await Context.Queryable<SysPosition>().Where(it => sysDeleteOrgList.Contains(it.OrgId)).CountAsync() > 0;
@@ -292,7 +292,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     }
 
     /// <inheritdoc />
-    public List<SysOrg> ConstrucOrgTrees(List<SysOrg> orgList, long parentId = 0)
+    public List<SysOrg> ConstrucOrgTrees(List<SysOrg> orgList, string parentId = SimpleAdminConst.Zero)
     {
         //找下级字典ID列表
         var orgs = orgList.Where(it => it.ParentId == parentId).OrderBy(it => it.SortCode).ToList();
@@ -327,7 +327,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
         if (sysOrgs.Any(it => it.ParentId == sysOrg.ParentId && it.Name == sysOrg.Name && it.Id != sysOrg.Id))//判断同级是否有名称重复的
             throw Oops.Bah($"存在重复的同级{name}:{sysOrg.Name}");
         sysOrg.Names = sysOrg.Name;//全称默认自己
-        if (sysOrg.ParentId != 0)
+        if (sysOrg.ParentId != SimpleAdminConst.Zero)
         {
             //获取父级,判断父级ID正不正确
             var parent = sysOrgs.Where(it => it.Id == sysOrg.ParentId).FirstOrDefault();
@@ -352,7 +352,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <param orgName="orgIds">机构Id列表</param>
     /// <returns></returns>
 
-    public List<SysOrg> GetParentListByIds(List<SysOrg> allOrgList, List<long> orgIds)
+    public List<SysOrg> GetParentListByIds(List<SysOrg> allOrgList, List<string> orgIds)
     {
         HashSet<SysOrg> sysOrgs = new HashSet<SysOrg>();//结果列表
         //遍历组织ID                                     
@@ -372,7 +372,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <param orgName="orgList">组织列表</param>
     /// <param orgName="parentId">父ID</param>
     /// <returns></returns>
-    public List<SysOrg> GetSysOrgChilden(List<SysOrg> orgList, long parentId)
+    public List<SysOrg> GetSysOrgChilden(List<SysOrg> orgList, string parentId)
     {
         //找下级组织ID列表
         var orgs = orgList.Where(it => it.ParentId == parentId).ToList();
@@ -398,7 +398,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <param orgName="parentId">父Id</param>
     /// <param orgName="newParentId">新父Id</param>
     /// <returns></returns>
-    public List<SysOrg> CopySysOrgChilden(List<SysOrg> orgList, long parentId, long newParentId)
+    public List<SysOrg> CopySysOrgChilden(List<SysOrg> orgList, string parentId, string newParentId)
     {
         //找下级组织列表
         var orgs = orgList.Where(it => it.ParentId == parentId).ToList();
@@ -441,7 +441,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <param name="sysOrgs">组织列表</param>
     /// <param name="parentId">父Id</param>
     /// <param name="orgName">组织名称</param>
-    public string GetNames(List<SysOrg> sysOrgs, long parentId, string orgName)
+    public string GetNames(List<SysOrg> sysOrgs, string parentId, string orgName)
     {
         var names = "";
         //获取父级菜单

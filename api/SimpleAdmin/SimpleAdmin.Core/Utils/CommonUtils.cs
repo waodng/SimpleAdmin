@@ -15,9 +15,9 @@ namespace SimpleAdmin.Core.Utils
         /// 获取唯一Id
         /// </summary>
         /// <returns></returns>
-        public static long GetSingleId()
+        public static string GetSingleId()
         {
-            return YitIdHelper.NextId();
+            return YitIdHelper.NextId().ToString();
         }
 
     }

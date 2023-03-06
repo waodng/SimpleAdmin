@@ -40,7 +40,7 @@ public interface ISysPositionService : ITransient
     /// </summary>
     /// <param name="id">职位ID</param>
     /// <returns>职位信息</returns>
-    Task<SysPosition> GetSysPositionById(long id);
+    Task<SysPosition> GetSysPositionById(string id);
 
     /// <summary>
     /// 职位分页查询

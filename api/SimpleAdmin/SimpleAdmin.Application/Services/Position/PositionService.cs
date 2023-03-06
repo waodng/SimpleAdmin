@@ -99,7 +99,7 @@ public class PositionService : DbRepository<SysPosition>, IPositionService
         else
         {
             //如果id大于0表示编辑
-            if (sysPosition.Id > 0)
+            if (!string.IsNullOrEmpty(sysPosition.Id))
             {
                 var position = await _sysPositionService.GetSysPositionById(sysPosition.Id);//获取机构
                 if (position.CreateUserId != UserManager.UserId) throw Oops.Bah(errorMessage);//岗位的创建人不是自己则报错

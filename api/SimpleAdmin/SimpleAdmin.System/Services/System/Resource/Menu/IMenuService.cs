@@ -26,7 +26,7 @@ public interface IMenuService : ITransient
     /// <param name="resourceList">菜单列表</param>
     /// <param name="parentId">父ID</param>
     /// <returns>菜单形结构</returns>
-    List<SysResource> ConstructMenuTrees(List<SysResource> resourceList, long parentId = 0);
+    List<SysResource> ConstructMenuTrees(List<SysResource> resourceList, string parentId = SimpleAdminConst.Zero);
 
     /// <summary>
     /// 获取菜单树

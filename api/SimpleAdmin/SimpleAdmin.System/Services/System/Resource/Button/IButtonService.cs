@@ -17,7 +17,7 @@ public interface IButtonService : ITransient
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    Task<List<long>> AddBatch(ButtonAddInput input);
+    Task<List<string>> AddBatch(ButtonAddInput input);
 
     /// <summary>
     /// 删除按钮

@@ -92,7 +92,7 @@ public class MenuService : DbRepository<SysResource>, IMenuService
             if (system != null)
                 throw Oops.Bah($"不可删除系统菜单:{system.Title}");
             //需要删除的资源ID列表
-            var resourceIds = new List<long>();
+            var resourceIds = new List<string>();
             //遍历菜单列表
             sysResources.ForEach(it =>
             {
@@ -110,7 +110,7 @@ public class MenuService : DbRepository<SysResource>, IMenuService
 
                 await DeleteByIdsAsync(ids.Cast<object>().ToArray());//删除菜单和按钮
                 await Context.Deleteable<SysRelation>()//关系表删除对应SYS_ROLE_HAS_RESOURCE
-                 .Where(it => it.Category == CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE && resourceIds.Contains(SqlFunc.ToInt64(it.TargetId))).ExecuteCommandAsync();
+                 .Where(it => it.Category == CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE && resourceIds.Contains(it.TargetId)).ExecuteCommandAsync();
             });
             if (result.IsSuccess)//如果成功了
             {
@@ -144,11 +144,11 @@ public class MenuService : DbRepository<SysResource>, IMenuService
         {
             if (sysResource.Module == input.Module)//如果模块ID没变直接返回
                 return;
-            if (sysResource.ParentId != 0)
+            if (sysResource.ParentId != SimpleAdminConst.Zero)
                 throw Oops.Bah($"非顶级菜单不可修改所属模块");
             //获取所有菜单和模块
             var resourceList = await _resourceService.GetListAsync(new List<string> { CateGoryConst.Resource_MENU, CateGoryConst.Resource_MODULE });
-            if (!resourceList.Any(it => it.Category == CateGoryConst.Resource_MODULE && it.Id == input.Module.Value))
+            if (!resourceList.Any(it => it.Category == CateGoryConst.Resource_MODULE && it.Id == input.Module))
                 throw Oops.Bah($"不存在的模块");
             //获取所有菜单
             var menuList = resourceList.Where(it => it.Category == CateGoryConst.Resource_MENU).ToList();
@@ -175,7 +175,7 @@ public class MenuService : DbRepository<SysResource>, IMenuService
         //判断是否有同级且同名的菜单
         if (menList.Any(it => it.ParentId == sysResource.ParentId && it.Title == sysResource.Title && it.Id != sysResource.Id))
             throw Oops.Bah($"存在重复的菜单名称:{sysResource.Title}");
-        if (sysResource.ParentId != 0)
+        if (sysResource.ParentId != SimpleAdminConst.Zero)
         {
             //获取父级,判断父级ID正不正确
             var parent = menList.Where(it => it.Id == sysResource.ParentId).FirstOrDefault();

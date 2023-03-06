@@ -39,7 +39,7 @@ public class Relationservice : DbRepository<SysRelation>, IRelationService
     }
 
     /// <inheritdoc/>
-    public async Task<List<SysRelation>> GetRelationListByObjectIdAndCategory(long objectId, string category)
+    public async Task<List<SysRelation>> GetRelationListByObjectIdAndCategory(string objectId, string category)
     {
         var sysRelations = await GetRelationByCategory(category);
         var result = sysRelations.Where(it => it.ObjectId == objectId).ToList();//获取关系集合
@@ -47,7 +47,7 @@ public class Relationservice : DbRepository<SysRelation>, IRelationService
     }
 
     /// <inheritdoc/>
-    public async Task<SysRelation> GetWorkbench(long userId)
+    public async Task<SysRelation> GetWorkbench(string userId)
     {
         var sysRelations = await GetRelationByCategory(CateGoryConst.Relation_SYS_USER_WORKBENCH_DATA);
         var result = sysRelations.Where(it => it.ObjectId == userId).FirstOrDefault();//获取个人工作台
@@ -56,7 +56,7 @@ public class Relationservice : DbRepository<SysRelation>, IRelationService
     }
 
     /// <inheritdoc/>
-    public async Task<List<SysRelation>> GetRelationListByObjectIdListAndCategory(List<long> objectIds, string category)
+    public async Task<List<SysRelation>> GetRelationListByObjectIdListAndCategory(List<string> objectIds, string category)
     {
         var sysRelations = await GetRelationByCategory(category);
         var result = sysRelations.Where(it => objectIds.Contains(it.ObjectId)).ToList();//获取关系集合
@@ -88,7 +88,7 @@ public class Relationservice : DbRepository<SysRelation>, IRelationService
     }
 
     /// <inheritdoc/>
-    public async Task SaveRelationBatch(string category, long objectId, List<string> targetIds, List<string> extJsons, bool clear)
+    public async Task SaveRelationBatch(string category, string objectId, List<string> targetIds, List<string> extJsons, bool clear)
     {
         var sysRelations = new List<SysRelation>();//要添加的列表
         for (int i = 0; i < targetIds.Count; i++)
@@ -124,7 +124,7 @@ public class Relationservice : DbRepository<SysRelation>, IRelationService
     }
 
     /// <inheritdoc/>
-    public async Task SaveRelation(string category, long objectId, string targetId, string extJson, bool clear, bool refreshCache = true)
+    public async Task SaveRelation(string category, string objectId, string targetId, string extJson, bool clear, bool refreshCache = true)
     {
         var sysRelation = new SysRelation
         {

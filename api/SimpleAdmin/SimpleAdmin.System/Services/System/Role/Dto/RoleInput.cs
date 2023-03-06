@@ -88,14 +88,14 @@ public class GrantUserInput
     /// <summary>
     /// Id
     /// </summary>
-    [Required(ErrorMessage = "Id不能为空")]
-    public long? Id { get; set; }
+    [IdNotNull(ErrorMessage = "Id不能为空")]
+    public string Id { get; set; }
 
     /// <summary>
     /// 授权权限信息
     /// </summary>
     [Required(ErrorMessage = "GrantInfoList不能为空")]
-    public List<long> GrantInfoList { get; set; }
+    public List<string> GrantInfoList { get; set; }
 }
 
 /// <summary>

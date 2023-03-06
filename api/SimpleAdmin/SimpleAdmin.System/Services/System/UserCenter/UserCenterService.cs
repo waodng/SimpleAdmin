@@ -43,10 +43,10 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
             //获取角色所拥有的资源集合
             var resourceList = await _relationService.GetRelationListByObjectIdListAndCategory(userInfo.RoleIdList, CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE);
             //定义菜单ID列表
-            HashSet<long> menuIdList = new HashSet<long>();
+            HashSet<string> menuIdList = new HashSet<string>();
 
             //获取菜单集合
-            menuIdList.AddRange(resourceList.Select(r => r.TargetId.ToLong()).ToList());
+            menuIdList.AddRange(resourceList.Select(r => r.TargetId).ToList());
 
             //获取所有的菜单和模块以及单页面列表，并按分类和排序码排序
             var allModuleAndMenuAndSpaList = await _resourceService.GetaModuleAndMenuAndSpaList();
@@ -76,7 +76,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
             var parentList = GetMyParentMenus(allMenuList, myMenus);
             myMenus.AddRange(parentList);//合并列表
             //获取我的模块信息Id列表
-            var moduleIds = myMenus.Select(it => it.Module.Value).Distinct().ToList();
+            var moduleIds = myMenus.Select(it => it.Module).Distinct().ToList();
             //获取我的模块集合
             var myModules = GetMyModules(allModuleList, moduleIds, allSpaList.Count);
             myMenus.AddRange(myModules);//模块添加到菜单列表
@@ -187,11 +187,11 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
     {
         var orgList = await _sysOrgService.GetListAsync();//获取全部机构
         var parentOrgs = _sysOrgService.GetOrgParents(orgList, UserManager.OrgId);//获取父节点列表
-        var topOrg = parentOrgs.Where(it => it.ParentId == 0).FirstOrDefault();//获取顶级节点
+        var topOrg = parentOrgs.Where(it => it.ParentId == SimpleAdminConst.Zero).FirstOrDefault();//获取顶级节点
         if (topOrg != null)
         {
             var orgs = await _sysOrgService.GetChildListById(topOrg.Id);//获取下级
-            var orgTree = ConstrucOrgTrees(orgs, 0, UserManager.OrgId);//获取组织架构
+            var orgTree = ConstrucOrgTrees(orgs, SimpleAdminConst.Zero, UserManager.OrgId);//获取组织架构
             return orgTree;
         }
         return new List<LoginOrgTreeOutput>();
@@ -256,7 +256,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
     /// <param name="moduleIds"></param>
     /// <param name="spaCount"></param>
     /// <returns></returns>
-    private List<SysResource> GetMyModules(List<SysResource> allModuleList, List<long> moduleIds, int spaCount)
+    private List<SysResource> GetMyModules(List<SysResource> allModuleList, List<string> moduleIds, int spaCount)
     {
         //获取我的模块信息
         var myModules = allModuleList.Where(it => moduleIds.Contains(it.Id)).ToList();
@@ -299,20 +299,20 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
     /// </summary>
     /// <param name="myMenus">我的菜单集合</param>
     /// <param name="firstSpaId">第一个单页面ID</param>
-    private void ConstructMeta(List<SysResource> myMenus, long firstSpaId)
+    private void ConstructMeta(List<SysResource> myMenus, string firstSpaId)
     {
         myMenus.ForEach(it =>
         {
             // 将模块的父id设置为0，设置随机path
             if (it.Category == CateGoryConst.Resource_MODULE)
             {
-                it.ParentId = 0;
+                it.ParentId = SimpleAdminConst.Zero;
                 it.Path = "/" + RandomHelper.CreateRandomString(10);
             }
             // 将根菜单的父id设置为模块的id
             if (it.Category == CateGoryConst.Resource_MENU)
             {
-                if (it.ParentId == 0)
+                if (it.ParentId == SimpleAdminConst.Zero)
                 {
                     it.ParentId = it.Module;
                 }

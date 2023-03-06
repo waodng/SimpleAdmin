@@ -94,7 +94,7 @@ public class DictService : DbRepository<DevDict>, IDictService
     {
         var devDicts = devDictList == null ? await GetListAsync() : devDictList;//获取全部
         var id = devDicts.Where(it => it.DictValue == DictValue).Select(it => it.Id).FirstOrDefault();//根据value找到父节点
-        if (id > 0)
+        if (!string.IsNullOrEmpty(id))
             return devDicts.Where(it => it.ParentId == id).Select(it => it.DictValue).ToList();//拿到字典值
         else
             return new List<string>();

@@ -119,6 +119,6 @@ public class MenuChangeModuleInput : BaseIdInput
     /// 模块ID
     /// </summary>
     [Required(ErrorMessage = "Module不能为空")]
-    public long? Module { get; set; }
+    public string Module { get; set; }
 
 }

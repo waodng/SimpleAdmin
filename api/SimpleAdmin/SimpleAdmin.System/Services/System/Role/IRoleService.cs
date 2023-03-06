@@ -31,7 +31,7 @@ public interface IRoleService : ITransient
     /// </summary>
     /// <param name="userId">用户ID</param>
     /// <returns></returns>
-    Task<List<SysRole>> GetRoleListByUserId(long userId);
+    Task<List<SysRole>> GetRoleListByUserId(string userId);
 
     /// <summary>
     /// 给角色授权权限
@@ -73,7 +73,7 @@ public interface IRoleService : ITransient
     /// </summary>
     /// <param name="input">角色ID</param>
     /// <returns></returns>
-    Task<List<long>> OwnUser(BaseIdInput input);
+    Task<List<string>> OwnUser(BaseIdInput input);
 
     /// <summary>
     /// 分页查询角色

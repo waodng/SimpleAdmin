@@ -109,7 +109,7 @@ public class OrgService : DbRepository<SysOrg>, IOrgService
         var dataScope = await _sysUserService.GetLoginUserApiDataScope();
         if (dataScope.Count > 0)//如果有机构
         {
-            if (sysOrg.Id > 0 && !dataScope.Contains(sysOrg.Id))//如果id不为0判断是否在数据范围
+            if (!string.IsNullOrEmpty(sysOrg.Id) && !dataScope.Contains(sysOrg.Id))//如果id不为0判断是否在数据范围
                 throw Oops.Bah(errorMessage);
             if (!dataScope.Contains(sysOrg.ParentId))//判断父ID是否在数据范围
                 throw Oops.Bah($"{errorMessage}下的机构");
@@ -117,7 +117,7 @@ public class OrgService : DbRepository<SysOrg>, IOrgService
         else
         {
             //如果id大于0表示编辑
-            if (sysOrg.Id > 0)
+            if (!string.IsNullOrEmpty(sysOrg.Id))
             {
                 var org = await _sysOrgService.GetSysOrgById(sysOrg.Id);//获取机构
                 if (org.CreateUserId != UserManager.UserId) throw Oops.Bah(errorMessage);//机构的创建人不是自己则报错

@@ -17,5 +17,5 @@ public interface IGenConfigSerivce : ITransient
     /// </summary>
     /// <param name="basicId"></param>
     /// <returns>配置列表</returns>
-    Task<List<GenConfig>> List(long basicId);
+    Task<List<GenConfig>> List(string basicId);
 }

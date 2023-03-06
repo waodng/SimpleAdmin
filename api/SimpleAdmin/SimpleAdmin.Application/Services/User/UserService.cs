@@ -111,7 +111,7 @@ public class UserService : DbRepository<SysUser>, IUserService
     /// <inheritdoc/>
     public async Task GrantRole(UserGrantRoleInput input)
     {
-        await CheckPermission(input.Id.Value, SimpleAdminConst.Disable);//检查权限
+        await CheckPermission(input.Id, SimpleAdminConst.Disable);//检查权限
         await _sysUserService.GrantRole(input);//授权
     }
 
@@ -226,7 +226,7 @@ public class UserService : DbRepository<SysUser>, IUserService
         else
         {
             //如果ID大于0表示编辑
-            if (sysUser.Id > 0)
+            if (!string.IsNullOrEmpty(sysUser.Id))
             {
                 //检查权限
                 await CheckPermission(sysUser.Id, operate, dataScope);

@@ -24,7 +24,7 @@
         [QueryParameters]
         public async Task<dynamic> List(string basicId)
         {
-            return await _genConfigSerivce.List(basicId.ToLong());
+            return await _genConfigSerivce.List(basicId);
 
         }
 
