@@ -83,7 +83,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
     {
         //先从Redis拿
         var userId = _simpleRedis.HashGet<string>(RedisConst.Redis_SysUserPhone, new string[] { phone })[0];
-        if (!string.IsNullOrEmpty(userId))
+        if (string.IsNullOrEmpty(userId))
         {
             phone = CryptogramUtil.Sm4Encrypt(phone);//SM4加密一下
             //单查获取用户手机号对应的账号
@@ -140,7 +140,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
     {
         //先从Redis拿
         var userId = _simpleRedis.HashGet<string>(RedisConst.Redis_SysUserAccount, new string[] { account })[0];
-        if (!string.IsNullOrEmpty(userId))
+        if (string.IsNullOrEmpty(userId))
         {
 
             //单查获取用户账号对应ID
