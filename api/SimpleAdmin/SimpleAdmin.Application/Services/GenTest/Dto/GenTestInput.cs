@@ -103,7 +103,7 @@ public class GenTestEditInput : GenTestAddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public long Id { get; set; }
+    public string Id { get; set; }
 }
 
 public class GenTestImportInput : ImportTemplateInput

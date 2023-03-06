@@ -52,7 +52,7 @@ public class GenBasicAddInput : GenBasic
     /// 所属模块
     /// </summary>
     [IdNotNull(ErrorMessage = "Module不能为空")]
-    public override long Module { get; set; }
+    public override string Module { get; set; }
 
 
     /// <summary>
@@ -137,5 +137,5 @@ public class GenBasicAddInput : GenBasic
 public class GenBasicEditInput : GenBasicAddInput
 {
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }

@@ -15,7 +15,7 @@ public class RelationRolePermission
     /// <summary>
     /// 自定义机构范围列表
     /// </summary>
-    public List<long> ScopeDefineOrgIdList { get; set; } = new List<long>();
+    public List<string> ScopeDefineOrgIdList { get; set; } = new List<string>();
 
 
     /// <summary>

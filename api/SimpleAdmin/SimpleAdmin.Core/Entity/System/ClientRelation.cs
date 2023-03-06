@@ -18,7 +18,7 @@ public class ClientRelation : PrimaryKeyEntity
     /// 对象ID 
     ///</summary>
     [SugarColumn(ColumnName = "ObjectId", ColumnDescription = "对象ID", IsNullable = false)]
-    public long ObjectId { get; set; }
+    public string ObjectId { get; set; }
     /// <summary>
     /// 目标ID 
     ///</summary>

@@ -26,7 +26,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
         var bTokenInfoDic = GetTokenDicFromRedis();
 
         //获取用户ID列表
-        var userIds = bTokenInfoDic.Keys.Select(it => it.ToLong()).ToList();
+        var userIds = bTokenInfoDic.Keys.Select(it => it).ToList();
         var query = Context.Queryable<SysUser>().Where(it => userIds.Contains(it.Id))//根据ID查询
               .WhereIF(!string.IsNullOrEmpty(input.Name), it => it.Name.Contains(input.Name))//根据姓名查询
               .WhereIF(!string.IsNullOrEmpty(input.Account), it => it.Account.Contains(input.Account))//根据账号查询

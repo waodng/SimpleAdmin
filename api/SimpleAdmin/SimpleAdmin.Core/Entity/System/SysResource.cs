@@ -14,7 +14,7 @@ public class SysResource : BaseEntity
     /// 父id 
     ///</summary>
     [SugarColumn(ColumnName = "ParentId", ColumnDescription = "父id", IsNullable = true)]
-    public virtual long? ParentId { get; set; }
+    public virtual string ParentId { get; set; }
     /// <summary>
     /// 标题 
     ///</summary>
@@ -39,7 +39,7 @@ public class SysResource : BaseEntity
     /// 模块 
     ///</summary>
     [SugarColumn(ColumnName = "Module", ColumnDescription = "所属模块Id", IsNullable = true)]
-    public virtual long? Module { get; set; }
+    public virtual string Module { get; set; }
     /// <summary>
     /// 菜单类型 
     ///</summary>

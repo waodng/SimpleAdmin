@@ -11,12 +11,12 @@ public class SysOrg : BaseEntity
     /// 父id 
     ///</summary>
     [SugarColumn(ColumnName = "ParentId", ColumnDescription = "父id")]
-    public long ParentId { get; set; }
+    public string ParentId { get; set; }
     /// <summary>
     /// 主管ID 
     ///</summary>
     [SugarColumn(ColumnName = "DirectorId", ColumnDescription = "主管ID", IsNullable = true)]
-    public long? DirectorId { get; set; }
+    public string DirectorId { get; set; }
     /// <summary>
     /// 名称 
     ///</summary>

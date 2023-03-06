@@ -17,12 +17,12 @@ public class MessagePageInput : BasePageInput
     /// <summary>
     /// 接收用户id
     /// </summary>
-    public long ReceiveUserId { get; set; }
+    public string ReceiveUserId { get; set; }
 
     /// <summary>
     /// 消息id列表
     /// </summary>
-    public List<long> Ids { get; set; }
+    public List<string> Ids { get; set; }
 }
 
 /// <summary>
@@ -48,7 +48,7 @@ public class MessageSendInput : DevMessage, IValidatableObject
     /// 接收人Id
     /// </summary>
     [Required(ErrorMessage = "ReceiverIdList不能为空")]
-    public List<long> ReceiverIdList { get; set; }
+    public List<string> ReceiverIdList { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

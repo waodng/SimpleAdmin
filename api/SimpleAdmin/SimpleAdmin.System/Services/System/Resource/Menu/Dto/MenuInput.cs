@@ -16,7 +16,7 @@ public class MenuTreeInput
     /// <summary>
     /// 模块
     /// </summary>
-    public long? Module { get; set; }
+    public string Module { get; set; }
 
     /// <summary>
     /// 关键字
@@ -34,7 +34,7 @@ public class MenuAddInput : SysResource, IValidatableObject
     /// 父ID
     /// </summary>
     [Required(ErrorMessage = "ParentId不能为空")]
-    public override long? ParentId { get; set; }
+    public override string ParentId { get; set; }
 
     /// <summary>
     /// 标题
@@ -51,7 +51,7 @@ public class MenuAddInput : SysResource, IValidatableObject
     /// 模块
     /// </summary>
     [Required(ErrorMessage = "Module不能为空")]
-    public override long? Module { get; set; }
+    public override string Module { get; set; }
 
     /// <summary>
     /// 路径
@@ -107,7 +107,7 @@ public class MenuEditInput : MenuAddInput
     /// ID
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }
 
 /// <summary>

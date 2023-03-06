@@ -65,6 +65,9 @@ public class SimpleAdminConst
 
     #endregion
 
-
+    /// <summary>
+    /// 0
+    /// </summary>
+    public const string Zero = "0";
 
 }

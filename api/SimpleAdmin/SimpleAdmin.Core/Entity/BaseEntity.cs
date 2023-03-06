@@ -11,7 +11,7 @@ public abstract class PrimaryKeyEntity
     /// 主键Id
     /// </summary>
     [SugarColumn(ColumnDescription = "Id", IsPrimaryKey = true)]
-    public virtual long Id { get; set; }
+    public virtual string Id { get; set; }
 
     /// <summary>
     /// 拓展信息
@@ -42,13 +42,13 @@ public class BaseEntity : PrimaryKeyEntity
     /// 创建者Id
     /// </summary>
     [SugarColumn(ColumnDescription = "创建者Id", IsOnlyIgnoreUpdate = true, IsNullable = true)]
-    public virtual long? CreateUserId { get; set; }
+    public virtual string CreateUserId { get; set; }
 
     /// <summary>
     /// 修改者Id
     /// </summary>
     [SugarColumn(ColumnDescription = "修改者Id", IsOnlyIgnoreInsert = true, IsNullable = true)]
-    public virtual long? UpdateUserId { get; set; }
+    public virtual string UpdateUserId { get; set; }
 
     /// <summary>
     /// 创建人
@@ -80,5 +80,5 @@ public abstract class DataEntityBase : BaseEntity
     /// 创建者部门Id
     /// </summary>
     [SugarColumn(ColumnDescription = "创建者部门Id")]
-    public virtual long CreateOrgId { get; set; }
+    public virtual string CreateOrgId { get; set; }
 }

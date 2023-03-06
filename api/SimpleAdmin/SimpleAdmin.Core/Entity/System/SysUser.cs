@@ -161,12 +161,12 @@ public class SysUser : BaseEntity
     /// 机构id 
     ///</summary>
     [SugarColumn(ColumnName = "OrgId", ColumnDescription = "机构id", IsNullable = false)]
-    public virtual long OrgId { get; set; }
+    public virtual string OrgId { get; set; }
     /// <summary>
     /// 职位id 
     ///</summary>
     [SugarColumn(ColumnName = "PositionId", ColumnDescription = "职位id", IsNullable = false)]
-    public virtual long PositionId { get; set; }
+    public virtual string PositionId { get; set; }
     /// <summary>
     /// 职级 
     ///</summary>
@@ -176,7 +176,7 @@ public class SysUser : BaseEntity
     /// 主管id 
     ///</summary>
     [SugarColumn(ColumnName = "DirectorId", ColumnDescription = "主管id", IsNullable = true)]
-    public long? DirectorId { get; set; }
+    public string DirectorId { get; set; }
     /// <summary>
     /// 兼任信息 
     ///</summary>
@@ -274,7 +274,7 @@ public class SysUser : BaseEntity
     /// 角色ID集合
     /// </summary>
     [SugarColumn(IsIgnore = true)]
-    public List<long> RoleIdList { get; set; }
+    public List<string> RoleIdList { get; set; }
 
     /// <summary>
     /// 数据范围集合
@@ -303,7 +303,7 @@ public class DataScope
     /// <summary>
     /// 数据范围
     /// </summary>
-    public List<long> DataScopes { get; set; }
+    public List<string> DataScopes { get; set; }
 
 }
 
@@ -315,14 +315,14 @@ public class PositionJson
     /// <summary>
     /// 组织ID
     /// </summary>
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
     /// <summary>
     /// 机构ID
     /// </summary>
-    public long PositionId { get; set; }
+    public string PositionId { get; set; }
 
     /// <summary>
     /// 主管ID
     /// </summary>
-    public long? DirectorId { get; set; }
+    public string DirectorId { get; set; }
 }

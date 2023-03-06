@@ -8,7 +8,7 @@ public class RoleOwnResourceOutput
     /// <summary>
     /// Id
     /// </summary>
-    public virtual long Id { get; set; }
+    public virtual string Id { get; set; }
 
     /// <summary>
     /// 已授权资源信息
@@ -26,7 +26,7 @@ public class RoleOwnPermissionOutput
     /// <summary>
     /// 角色Id
     /// </summary>
-    public virtual long Id { get; set; }
+    public virtual string Id { get; set; }
 
     /// <summary>
     /// 已授权资源信息

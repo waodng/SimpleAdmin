@@ -30,7 +30,7 @@ public class DictPageInput : BasePageInput
     /// <summary>
     /// 父id 
     ///</summary>
-    public long? ParentId { get; set; }
+    public string ParentId { get; set; }
 
 
     /// <summary>
@@ -48,7 +48,7 @@ public class DictAddInput : DevDict
     /// <summary>
     /// 父ID
     /// </summary>
-    public override long ParentId { get; set; } = 0;
+    public override string ParentId { get; set; } = SimpleAdminConst.Zero;
 
     /// <summary>
     /// 字典名称
@@ -76,7 +76,7 @@ public class DictEditInput : DictAddInput
     /// ID
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
 }
 

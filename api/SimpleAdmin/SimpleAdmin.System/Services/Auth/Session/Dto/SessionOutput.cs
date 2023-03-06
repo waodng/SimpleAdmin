@@ -8,7 +8,7 @@ public class SessionOutput
     /// <summary>
     /// 主键Id
     /// </summary>
-    public virtual long Id { get; set; }
+    public virtual string Id { get; set; }
 
     /// <summary>
     /// 头像 

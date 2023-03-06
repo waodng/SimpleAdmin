@@ -116,7 +116,7 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
         //获取所有菜单集合
         var menuList = await _resourceService.GetListByCategory(CateGoryConst.Resource_MENU);
         //获取按钮的父菜单id集合
-        var parentIds = buttonList.Where(it => ids.Contains(it.Id)).Select(it => it.ParentId.Value.ToString()).ToList();
+        var parentIds = buttonList.Where(it => ids.Contains(it.Id)).Select(it => it.ParentId).ToList();
         //获取关系表分类为SYS_ROLE_HAS_RESOURCE数据
         var roleResources = await _relationService.GetRelationByCategory(CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE);
         //获取相关关系表数据

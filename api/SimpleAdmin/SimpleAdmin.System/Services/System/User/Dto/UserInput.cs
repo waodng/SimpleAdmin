@@ -10,12 +10,12 @@ public class UserSelectorInput
     /// <summary>
     /// 组织ID
     /// </summary>
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
     /// <summary>
     /// 机构ID列表
     /// </summary>
-    public List<long> OrgIds { get; set; }
+    public List<string> OrgIds { get; set; }
 
     /// <summary>
     /// 关键字
@@ -34,7 +34,7 @@ public class UserPageInput : BasePageInput
     /// 所属组织
     /// </summary>
 
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
     /// <summary>
     /// 动态查询条件
@@ -74,13 +74,13 @@ public class UserAddInput : SysUser
     /// 组织id
     /// </summary>
     [IdNotNull(ErrorMessage = "OrgId不能为空")]
-    public override long OrgId { get; set; }
+    public override string OrgId { get; set; }
 
     /// <summary>
     /// 职位id
     /// </summary>
     [IdNotNull(ErrorMessage = "PositionId不能为空")]
-    public override long PositionId { get; set; }
+    public override string PositionId { get; set; }
 }
 
 /// <summary>
@@ -92,7 +92,7 @@ public class UserEditInput : UserAddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
 }
 
@@ -105,14 +105,14 @@ public class UserGrantRoleInput
     /// <summary>
     /// Id
     /// </summary>
-    [Required(ErrorMessage = "Id不能为空")]
-    public long? Id { get; set; }
+    [IdNotNull(ErrorMessage = "Id不能为空")]
+    public string Id { get; set; }
 
     /// <summary>
     /// 授权权限信息
     /// </summary>
     [Required(ErrorMessage = "RoleIdList不能为空")]
-    public List<long> RoleIdList { get; set; }
+    public List<string> RoleIdList { get; set; }
 }
 
 /// <summary>
@@ -297,12 +297,12 @@ public class SysUserImportInput : ImportTemplateInput
     /// 部门Id
     /// </summary>
     [ImporterHeader(IsIgnore = true)]
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
     /// <summary>
     /// 职位Id
     /// </summary>
     [ImporterHeader(IsIgnore = true)]
-    public long PositionId { get; set; }
+    public string PositionId { get; set; }
 
 }

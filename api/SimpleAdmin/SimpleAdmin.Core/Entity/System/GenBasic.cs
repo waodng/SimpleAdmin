@@ -34,12 +34,12 @@ public class GenBasic : BaseEntity
     /// 所属模块 
     ///</summary>
     [SugarColumn(ColumnName = "Module", ColumnDescription = "所属模块")]
-    public virtual long Module { get; set; }
+    public virtual string Module { get; set; }
     /// <summary>
     /// 上级目录 
     ///</summary>
     [SugarColumn(ColumnName = "MenuPid", ColumnDescription = "上级目录")]
-    public virtual long MenuPid { get; set; }
+    public virtual string MenuPid { get; set; }
 
     /// <summary>
     /// 业务名 

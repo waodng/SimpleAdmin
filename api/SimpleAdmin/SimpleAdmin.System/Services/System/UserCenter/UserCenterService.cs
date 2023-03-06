@@ -238,7 +238,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
         myMenus.ForEach(it =>
         {
             //找到父ID对应的菜单
-            var parent = allMenuList.Where(r => r.Id == it.ParentId.Value).FirstOrDefault();
+            var parent = allMenuList.Where(r => r.Id == it.ParentId).FirstOrDefault();
             if (parent != null && !parentList.Contains(parent))//如果不为空且夫列表里没有
             {
                 parentList.Add(parent);//添加到父列表
@@ -356,7 +356,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
     /// <param name="parentId">父ID</param>
     /// <param name="orgId">用户ID</param>
     /// <returns></returns>
-    public List<LoginOrgTreeOutput> ConstrucOrgTrees(List<SysOrg> orgList, long parentId, long orgId)
+    public List<LoginOrgTreeOutput> ConstrucOrgTrees(List<SysOrg> orgList, string parentId, string orgId)
     {
         //找下级字典ID列表
         var orgs = orgList.Where(it => it.ParentId == parentId).OrderBy(it => it.SortCode).ToList();

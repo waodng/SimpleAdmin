@@ -11,7 +11,7 @@ public class SysRole : DataEntityBase
     /// 组织id 
     ///</summary>
     [SugarColumn(ColumnName = "OrgId", ColumnDescription = "组织id", IsNullable = true)]
-    public long? OrgId { get; set; }
+    public string OrgId { get; set; }
     /// <summary>
     /// 名称 
     ///</summary>
@@ -60,5 +60,5 @@ public class DefaultDataScope
     /// <summary>
     /// 自定义机构范围列表
     /// </summary>
-    public List<long> ScopeDefineOrgIdList { get; set; } = new List<long>();
+    public List<string> ScopeDefineOrgIdList { get; set; } = new List<string>();
 }

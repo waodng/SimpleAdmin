@@ -9,7 +9,7 @@ public class UpdateInfoInput : SysUser
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
     /// <summary>
     /// 姓名

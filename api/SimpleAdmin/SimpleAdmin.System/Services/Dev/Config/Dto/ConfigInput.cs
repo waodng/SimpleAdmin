@@ -39,7 +39,7 @@ public class ConfigEditInput : ConfigAddInput
     /// ID
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }
 
 /// <summary>

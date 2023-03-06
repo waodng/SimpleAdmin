@@ -168,12 +168,12 @@ public class ClientUser : DataEntityBase
     /// 机构id 
     ///</summary>
     [SugarColumn(ColumnName = "OrgId", ColumnDescription = "机构id")]
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
     /// <summary>
     /// 职位id 
     ///</summary>
     [SugarColumn(ColumnName = "PositionId", ColumnDescription = "职位id")]
-    public long PositionId { get; set; }
+    public string PositionId { get; set; }
     /// <summary>
     /// 职级 
     ///</summary>
@@ -183,7 +183,7 @@ public class ClientUser : DataEntityBase
     /// 主管id 
     ///</summary>
     [SugarColumn(ColumnName = "DirectorId", ColumnDescription = "主管id", IsNullable = true)]
-    public long DirectorId { get; set; }
+    public string DirectorId { get; set; }
     /// <summary>
     /// 兼任信息 
     ///</summary>

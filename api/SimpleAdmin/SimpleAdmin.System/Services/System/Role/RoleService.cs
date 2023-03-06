@@ -70,7 +70,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
     {
         var orgIds = await _sysOrgService.GetOrgChildIds(input.OrgId);//获取下级机构
         var query = Context.Queryable<SysRole>()
-                         .WhereIF(input.OrgId > 0, it => orgIds.Contains(it.OrgId.Value))//根据组织
+                         .WhereIF(input.OrgId > 0, it => orgIds.Contains(it.OrgId))//根据组织
                          .WhereIF(!string.IsNullOrEmpty(input.Category), it => it.Category == input.Category)//根据分类
                          .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Name.Contains(input.SearchKey))//根据关键字查询
                          .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")
@@ -134,7 +134,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
                 await RefreshCache();//刷新缓存
                 if (permissions.Any())//如果有授权权
                     await _relationService.RefreshCache(CateGoryConst.Relation_SYS_ROLE_HAS_PERMISSION);//关系表刷新SYS_ROLE_HAS_PERMISSION缓存
-                await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<long> { input.Id });//清除角色下用户缓存
+                await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<string> { input.Id });//清除角色下用户缓存
             }
             else
             {
@@ -271,7 +271,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
             {
                 await _relationService.RefreshCache(CateGoryConst.Relation_SYS_ROLE_HAS_RESOURCE);//刷新关系缓存
                 await _relationService.RefreshCache(CateGoryConst.Relation_SYS_ROLE_HAS_PERMISSION);//刷新关系缓存
-                await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<long> { input.Id });//发送事件清除角色下用户缓存
+                await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<string> { input.Id });//发送事件清除角色下用户缓存
             }
             else
             {
@@ -309,7 +309,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
         var apiUrls = input.GrantInfoList.Select(it => it.ApiUrl).ToList();//apiurl列表
         var extJsons = input.GrantInfoList.Select(it => it.ToJson()).ToList();//拓展信息
         await _relationService.SaveRelationBatch(CateGoryConst.Relation_SYS_ROLE_HAS_PERMISSION, input.Id, apiUrls, extJsons, true);//添加到数据库
-        await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<long> { input.Id });//清除角色下用户缓存
+        await _eventPublisher.PublishAsync(EventSubscriberConst.ClearUserCache, new List<string> { input.Id });//清除角色下用户缓存
     }
 
 
@@ -371,7 +371,7 @@ public class RoleService : DbRepository<SysRole>, IRoleService
             orgIds = orgIds.Where(it => input.OrgIds.Contains(it)).ToList();//包含在机构ID列表中的组织ID
         }
         var result = await Context.Queryable<SysRole>()
-                         .WhereIF(orgIds.Count > 0, it => orgIds.Contains(it.OrgId.Value))//组织ID
+                         .WhereIF(orgIds.Count > 0, it => orgIds.Contains(it.OrgId))//组织ID
                          .WhereIF(!string.IsNullOrEmpty(input.Category), it => it.Category == input.Category)//分类
                          .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Name.Contains(input.SearchKey))//根据关键字查询
                          .ToListAsync();

@@ -18,7 +18,7 @@ public interface IResourceService : ITransient
     /// <param name="resId">资源ID</param>
     /// <param name="isContainOneself">是否包含自己</param>
     /// <returns>资源列表</returns>
-    Task<List<SysResource>> GetChildListById(long resId, bool isContainOneself = true);
+    Task<List<SysResource>> GetChildListById(string resId, bool isContainOneself = true);
 
     /// <summary>
     /// 根据资源ID获取所有下级资源
@@ -27,7 +27,7 @@ public interface IResourceService : ITransient
     /// <param name="resId">资源ID</param>
     /// <param name="isContainOneself">是否包含自己</param>
     /// <returns>资源列表</returns>
-    List<SysResource> GetChildListById(List<SysResource> sysResources, long resId, bool isContainOneself = true);
+    List<SysResource> GetChildListById(List<SysResource> sysResources, string resId, bool isContainOneself = true);
 
     /// <summary>
     /// 获取ID获取Code列表

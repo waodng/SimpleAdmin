@@ -292,7 +292,7 @@ public class AuthService : IAuthService
             //判断是否单用户登录
             if (isSingle)
             {
-                await SingleLogin(loginEvent.SysUser.Id.ToString(), tokenInfos.Where(it => it.LoginClientType == loginClientType).ToList());//单用户登录方法
+                await SingleLogin(loginEvent.SysUser.Id, tokenInfos.Where(it => it.LoginClientType == loginClientType).ToList());//单用户登录方法
                 tokenInfos = tokenInfos.Where(it => it.LoginClientType != loginClientType).ToList();//去掉当前登录类型的token
                 tokenInfos.Add(tokenInfo);//添加到列表
             }
@@ -307,7 +307,7 @@ public class AuthService : IAuthService
         }
 
         //添加到token列表
-        _simpleRedis.HashAdd(RedisConst.Redis_UserToken, loginEvent.SysUser.Id.ToString(), tokenInfos);
+        _simpleRedis.HashAdd(RedisConst.Redis_UserToken, loginEvent.SysUser.Id, tokenInfos);
     }
 
 
@@ -330,12 +330,12 @@ public class AuthService : IAuthService
             if (tokenInfos.Count > 0)
             {
                 //更新token列表
-                _simpleRedis.HashAdd(RedisConst.Redis_UserToken, loginEvent.SysUser.Id.ToString(), tokenInfos);
+                _simpleRedis.HashAdd(RedisConst.Redis_UserToken, loginEvent.SysUser.Id, tokenInfos);
             }
             else
             {
                 //从列表中删除
-                _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { loginEvent.SysUser.Id.ToString() });
+                _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { loginEvent.SysUser.Id });
             }
         }
 
@@ -346,10 +346,10 @@ public class AuthService : IAuthService
     /// </summary>
     /// <param name="userId">用户ID</param>
     /// <returns>token列表</returns>
-    private List<TokenInfo> GetTokenInfos(long userId)
+    private List<TokenInfo> GetTokenInfos(string userId)
     {
         //redis获取用户token列表
-        List<TokenInfo> tokenInfos = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, userId.ToString());
+        List<TokenInfo> tokenInfos = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, userId);
         if (tokenInfos != null)
         {
             tokenInfos = tokenInfos.Where(it => it.TokenTimeout > DateTime.Now).ToList();//去掉登录超时的

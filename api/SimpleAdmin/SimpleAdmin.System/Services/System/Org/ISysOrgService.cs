@@ -50,7 +50,7 @@ public interface ISysOrgService : ITransient
     /// <param name="orgId"></param>
     /// <param name="isContainOneself"></param>
     /// <returns></returns>
-    Task<List<long>> GetOrgChildIds(long orgId, bool isContainOneself = true);
+    Task<List<string>> GetOrgChildIds(string orgId, bool isContainOneself = true);
 
     /// <summary>
     /// 根据组织Id递归获取上级
@@ -59,14 +59,14 @@ public interface ISysOrgService : ITransient
     /// <param name="orgId">组织Id</param>
     /// <param name="includeSelf">是否包含自己</param>
     /// <returns></returns>
-    List<SysOrg> GetOrgParents(List<SysOrg> allOrgList, long orgId, bool includeSelf = true);
+    List<SysOrg> GetOrgParents(List<SysOrg> allOrgList, string orgId, bool includeSelf = true);
 
     /// <summary>
     /// 获取组织信息
     /// </summary>
     /// <param name="id">组织id</param>
     /// <returns>组织信息</returns>
-    Task<SysOrg> GetSysOrgById(long id);
+    Task<SysOrg> GetSysOrgById(string id);
 
     /// <summary>
     /// 组织分页查询
@@ -132,7 +132,7 @@ public interface ISysOrgService : ITransient
     /// <param name="orgList">组织列表</param>
     /// <param name="parentId">父ID</param>
     /// <returns>树型结构</returns>
-    List<SysOrg> ConstrucOrgTrees(List<SysOrg> orgList, long parentId = 0);
+    List<SysOrg> ConstrucOrgTrees(List<SysOrg> orgList, string parentId = SimpleAdminConst.Zero);
 
     /// <summary>
     /// 刷新缓存
@@ -145,7 +145,7 @@ public interface ISysOrgService : ITransient
     /// </summary>
     /// <param name="orgIds">机构ID列表</param>
     /// <returns>组织树列表</returns>
-    Task<List<SysOrg>> Tree(List<long> orgIds = null);
+    Task<List<SysOrg>> Tree(List<string> orgIds = null);
     #endregion
 
 }

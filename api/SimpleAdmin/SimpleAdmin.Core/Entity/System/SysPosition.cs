@@ -11,7 +11,7 @@ public class SysPosition : DataEntityBase
     /// 组织id 
     ///</summary>
     [SugarColumn(ColumnName = "OrgId", ColumnDescription = "组织id")]
-    public virtual long OrgId { get; set; }
+    public virtual string OrgId { get; set; }
     /// <summary>
     /// 名称 
     ///</summary>

@@ -542,7 +542,7 @@ public class GenBasicService : DbRepository<GenBasic>, IGenbasicService
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    private async Task<GenBasic> GetGenBasic(long id)
+    private async Task<GenBasic> GetGenBasic(string id)
     {
         var genBasic = await GetByIdAsync(id);
         if (genBasic == null)

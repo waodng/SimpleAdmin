@@ -10,7 +10,7 @@ public class UserManager
     /// <summary>
     /// 当前用户Id
     /// </summary>
-    public static long UserId => (App.User?.FindFirst(ClaimConst.UserId)?.Value).ToLong();
+    public static string UserId => App.User?.FindFirst(ClaimConst.UserId)?.Value;
 
     /// <summary>
     /// 当前用户账号
@@ -31,5 +31,5 @@ public class UserManager
     /// <summary>
     /// 机构ID
     /// </summary>
-    public static long OrgId => (App.User?.FindFirst(ClaimConst.OrgId)?.Value).ToLong();
+    public static string OrgId => App.User?.FindFirst(ClaimConst.OrgId)?.Value;
 }

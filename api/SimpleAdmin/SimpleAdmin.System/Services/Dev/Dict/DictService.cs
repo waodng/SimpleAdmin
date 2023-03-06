@@ -125,7 +125,7 @@ public class DictService : DbRepository<DevDict>, IDictService
 
 
     /// <inheritdoc />
-    public List<DevDict> ConstructResourceTrees(List<DevDict> dictList, long parentId = 0)
+    public List<DevDict> ConstructResourceTrees(List<DevDict> dictList, string parentId = SimpleAdminConst.Zero)
     {
         //找下级字典ID列表
         var resources = dictList.Where(it => it.ParentId == parentId).OrderBy(it => it.SortCode).ToList();
@@ -181,7 +181,7 @@ public class DictService : DbRepository<DevDict>, IDictService
     /// <param name="dictList">字典列表</param>
     /// <param name="parentId">父ID</param>
     /// <returns></returns>
-    public List<DevDict> GetDevDictChilden(List<DevDict> dictList, long parentId)
+    public List<DevDict> GetDevDictChilden(List<DevDict> dictList, string parentId)
     {
         //找下级ID列表
         var resources = dictList.Where(it => it.ParentId == parentId).ToList();

@@ -21,7 +21,7 @@ public class UserEventSubscriber : IEventSubscriber, ISingleton
     [EventSubscribe(EventSubscriberConst.ClearUserCache)]
     public async Task DeleteUserCacheByRoleIds(EventHandlerExecutingContext context)
     {
-        var roleIds = (List<long>)context.Source.Payload;//获取角色ID
+        var roleIds = (List<string>)context.Source.Payload;//获取角色ID
 
         // 创建新的作用域
         using var scope = _services.CreateScope();

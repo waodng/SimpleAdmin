@@ -414,7 +414,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
                 {
                     if (it.DirectorId != null)//如果主管ID不是空的
                     {
-                        if (ids.Contains(it.DirectorId.Value))//如果是兼任主管
+                        if (ids.Contains(it.DirectorId))//如果是兼任主管
                         {
                             it.DirectorId = null;//移除
                             update = true;//需要更新
@@ -429,7 +429,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
             var result = await itenant.UseTranAsync(async () =>
             {
                 //清除该用户作为主管信息
-                await UpdateAsync(it => new SysUser { DirectorId = null }, it => ids.Contains(it.DirectorId.Value));
+                await UpdateAsync(it => new SysUser { DirectorId = null }, it => ids.Contains(it.DirectorId));
                 //如果有兼任主管就清除兼任主管信息
                 if (updatePositionJsonUser.Count > 0)
                     await Context.Updateable(updatePositionJsonUser).UpdateColumns(it => it.PositionJson).ExecuteCommandAsync();
@@ -454,16 +454,16 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
     }
 
     /// <inheritdoc />
-    public void DeleteUserFromRedis(long userId)
+    public void DeleteUserFromRedis(string userId)
     {
-        DeleteUserFromRedis(new List<long> { userId });
+        DeleteUserFromRedis(new List<string> { userId });
     }
 
 
     /// <inheritdoc />
-    public void DeleteUserFromRedis(List<long> ids)
+    public void DeleteUserFromRedis(List<string> ids)
     {
-        var userIds = ids.Select(it => it.ToString()).ToArray();//id转string列表
+        var userIds = ids.Select(it => it).ToArray();//id转string列表
         var sysUsers = _simpleRedis.HashGet<SysUser>(RedisConst.Redis_SysUser, userIds);//获取用户列表
         sysUsers = sysUsers.Where(it => it != null).ToList();//过滤掉不存在的
         if (sysUsers.Count > 0)
@@ -473,10 +473,10 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
             //删除用户信息
             _simpleRedis.HashDel<SysUser>(RedisConst.Redis_SysUser, userIds);
             //删除账号
-            _simpleRedis.HashDel<long>(RedisConst.Redis_SysUserAccount, accounts);
+            _simpleRedis.HashDel<string>(RedisConst.Redis_SysUserAccount, accounts);
             //删除手机
             if (phones != null)
-                _simpleRedis.HashDel<long>(RedisConst.Redis_SysUserPhone, phones);
+                _simpleRedis.HashDel<string>(RedisConst.Redis_SysUserPhone, phones);
         }
     }
 
@@ -724,7 +724,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
         var orgIds = await _sysOrgService.GetOrgChildIds(input.OrgId);//获取下级机构
         var query = Context.Queryable<SysUser>().LeftJoin<SysOrg>((u, o) => u.OrgId == o.Id)
          .LeftJoin<SysPosition>((u, o, p) => u.PositionId == p.Id)
-         .WhereIF(input.OrgId > 0, u => orgIds.Contains(u.OrgId))//根据组织
+         .WhereIF(!string.IsNullOrEmpty(input.OrgId), u => orgIds.Contains(u.OrgId))//根据组织
          .WhereIF(input.Expression != null, input.Expression?.ToExpression())//动态查询
          .WhereIF(!string.IsNullOrEmpty(input.UserStatus), u => u.UserStatus == input.UserStatus)//根据状态查询
          .WhereIF(!string.IsNullOrEmpty(input.SearchKey), u => u.Name.Contains(input.SearchKey) || u.Account.Contains(u.Account))//根据关键字查询

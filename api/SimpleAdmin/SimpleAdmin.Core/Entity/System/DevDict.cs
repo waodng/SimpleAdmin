@@ -11,7 +11,7 @@ public class DevDict : BaseEntity
     /// 父id 
     ///</summary>
     [SugarColumn(ColumnName = "ParentId", ColumnDescription = "父id")]
-    public virtual long ParentId { get; set; }
+    public virtual string ParentId { get; set; }
     /// <summary>
     /// 字典文字 
     ///</summary>

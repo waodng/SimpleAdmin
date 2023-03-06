@@ -18,5 +18,5 @@ public class BaseIdInput
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
     [DataValidation(ValidationTypes.Numeric)]
-    public virtual long Id { get; set; }
+    public virtual string Id { get; set; }
 }

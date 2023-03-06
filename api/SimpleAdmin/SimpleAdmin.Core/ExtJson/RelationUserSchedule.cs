@@ -33,7 +33,7 @@ public class RelationUserSchedule
     /// <summary>
     /// 用户id
     /// </summary>
-    public long ScheduleUserId { get; set; }
+    public string ScheduleUserId { get; set; }
 
 
     /// <summary>

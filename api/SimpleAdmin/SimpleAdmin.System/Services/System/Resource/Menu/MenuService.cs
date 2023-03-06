@@ -24,7 +24,7 @@ public class MenuService : DbRepository<SysResource>, IMenuService
 
 
     /// <inheritdoc/>
-    public List<SysResource> ConstructMenuTrees(List<SysResource> resourceList, long parentId = 0)
+    public List<SysResource> ConstructMenuTrees(List<SysResource> resourceList, string parentId = SimpleAdminConst.Zero)
     {
         //找下级资源ID列表
         var resources = resourceList.Where(it => it.ParentId == parentId).OrderBy(it => it.SortCode).ToList();
@@ -47,7 +47,7 @@ public class MenuService : DbRepository<SysResource>, IMenuService
     {
         //获取所有菜单
         var sysResources = await _resourceService.GetListByCategory(CateGoryConst.Resource_MENU);
-        sysResources = sysResources.WhereIF(input.Module != null, it => it.Module.Value == input.Module.Value)//根据模块查找
+        sysResources = sysResources.WhereIF(!string.IsNullOrEmpty(input.Module), it => it.Module == input.Module)//根据模块查找
             .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Title == input.SearchKey)//根据关键字查找
             .ToList();
         //构建菜单树

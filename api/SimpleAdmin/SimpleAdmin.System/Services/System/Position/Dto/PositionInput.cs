@@ -9,12 +9,12 @@ public class PositionPageInput : BasePageInput
     /// <summary>
     /// 组织ID
     /// </summary>
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
     /// <summary>
     /// 职位列表
     /// </summary>
-    public List<long> OrgIds { get; set; }
+    public List<string> OrgIds { get; set; }
 
     /// <summary>
     /// 分类
@@ -31,7 +31,7 @@ public class PositionAddInput : SysPosition
     /// 组织ID
     /// </summary>
     [IdNotNull(ErrorMessage = "OrgId不能为空")]
-    public override long OrgId { get; set; }
+    public override string OrgId { get; set; }
 
     /// <summary>
     /// 名称
@@ -55,7 +55,7 @@ public class PositionEditInput : PositionAddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }
 
 /// <summary>

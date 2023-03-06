@@ -11,7 +11,7 @@ public class GenConfig : BaseEntity
     /// 基础ID 
     ///</summary>
     [SugarColumn(ColumnName = "BasicId", ColumnDescription = "基础配置ID")]
-    public long BasicId { get; set; }
+    public string BasicId { get; set; }
     /// <summary>
     /// 是否主键 
     ///</summary>

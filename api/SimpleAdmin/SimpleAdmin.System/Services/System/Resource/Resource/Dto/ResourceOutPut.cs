@@ -42,7 +42,7 @@ public class ResTreeSelector
         /// <summary>
         /// 父id
         /// </summary>
-        public long ParentId { get; set; }
+        public string ParentId { get; set; }
 
 
         /// <summary>

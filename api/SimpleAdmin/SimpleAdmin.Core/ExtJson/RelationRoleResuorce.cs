@@ -10,11 +10,11 @@ public class RelationRoleResuorce
     /// <summary>
     /// 菜单ID
     /// </summary>
-    public long MenuId { get; set; }
+    public string MenuId { get; set; }
 
     /// <summary>
     /// 按钮信息
     /// </summary>
-    public List<long> ButtonInfo { get; set; } = new List<long>();
+    public List<string> ButtonInfo { get; set; } = new List<string>();
 
 }

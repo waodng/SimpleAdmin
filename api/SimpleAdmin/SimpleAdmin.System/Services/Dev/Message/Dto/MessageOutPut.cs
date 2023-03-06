@@ -17,7 +17,7 @@ public class MessageDetailOutPut : DevMessage
         /// <summary>
         /// 接收人ID
         /// </summary>
-        public long ReceiveUserId { get; set; }
+        public string ReceiveUserId { get; set; }
 
         /// <summary>
         /// 接收人姓名

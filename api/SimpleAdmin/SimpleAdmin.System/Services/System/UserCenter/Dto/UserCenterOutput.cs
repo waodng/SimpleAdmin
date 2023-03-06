@@ -9,7 +9,7 @@ public class LoginOrgTreeOutput
     /// <summary>
     /// Id
     /// </summary>
-    public long Id { get; set; }
+    public string Id { get; set; }
 
     /// <summary>
     /// 名称
@@ -19,7 +19,7 @@ public class LoginOrgTreeOutput
     /// <summary>
     /// 父ID
     /// </summary>
-    public long Pid { get; set; }
+    public string Pid { get; set; }
 
     /// <summary>
     /// 子节点

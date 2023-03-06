@@ -23,7 +23,7 @@ public class GenViewModel : GenBasic
     /// <summary>
     /// 菜单ID
     /// </summary>
-    public long MenuId { get; set; } = YitIdHelper.NextId();
+    public string MenuId { get; set; } = YitIdHelper.NextId().ToString();
 
     /// <summary>
     /// 菜单编码

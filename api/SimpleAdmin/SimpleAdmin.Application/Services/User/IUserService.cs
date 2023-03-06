@@ -32,7 +32,7 @@ public interface IUserService : ITransient
     /// </summary>
     /// <param name="input">用户ID</param>
     /// <returns></returns>
-    Task<List<long>> OwnRole(BaseIdInput input);
+    Task<List<string>> OwnRole(BaseIdInput input);
 
     /// <summary>
     /// 角色选择器

@@ -36,7 +36,7 @@ public class RoleEditInput : RoleAddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }
 
 /// <summary>
@@ -48,7 +48,7 @@ public class GrantResourceInput : RoleOwnResourceOutput
     /// 角色Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
     /// <summary>
     /// 授权资源信息
@@ -71,7 +71,7 @@ public class GrantPermissionInput : RoleOwnPermissionOutput
     /// 角色Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
     /// <summary>
     /// 授权权限信息
@@ -106,14 +106,14 @@ public class RoleSelectorInput
     /// <summary>
     /// 组织ID
     /// </summary>
-    public long OrgId { get; set; }
+    public string OrgId { get; set; }
 
 
 
     /// <summary>
     /// 机构ID列表
     /// </summary>
-    public List<long> OrgIds { get; set; }
+    public List<string> OrgIds { get; set; }
 
     /// <summary>
     /// 关键字

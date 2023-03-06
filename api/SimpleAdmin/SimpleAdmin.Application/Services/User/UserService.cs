@@ -36,7 +36,7 @@ public class UserService : DbRepository<SysUser>, IUserService
 
 
     /// <inheritdoc/>
-    public async Task<List<long>> OwnRole(BaseIdInput input)
+    public async Task<List<string>> OwnRole(BaseIdInput input)
     {
         return await _sysUserService.OwnRole(input);//获取角色
     }
@@ -246,7 +246,7 @@ public class UserService : DbRepository<SysUser>, IUserService
     /// <param name="operate">操作名称</param>
     /// <param name="dataScope">数据范围</param>
     /// <returns></returns>
-    private async Task CheckPermission(long userId, string operate, List<long> dataScope = null)
+    private async Task CheckPermission(string userId, string operate, List<string> dataScope = null)
     {
         var errorMessage = $"您没有权限{operate}该机构下的人员";
         //获取数据范围
@@ -274,7 +274,7 @@ public class UserService : DbRepository<SysUser>, IUserService
     /// <param name="dataScope">数据范围ID数组</param>
     /// <param name="clearError">是否初始化错误</param>
     /// <returns></returns>
-    public async Task<List<BizUserImportInput>> CheckImport(List<BizUserImportInput> data, List<long> dataScope, bool clearError = false)
+    public async Task<List<BizUserImportInput>> CheckImport(List<BizUserImportInput> data, List<string> dataScope, bool clearError = false)
     {
         var errorMessage = $"没有权限";
         //先经过系统用户检查

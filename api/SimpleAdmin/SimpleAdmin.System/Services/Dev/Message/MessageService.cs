@@ -93,13 +93,13 @@ public class MessageService : DbRepository<DevMessage>, IMessageService
             }
             if (!isSelf)//如果不是自己则把所有的用户都列出来
             {
-                var userIds = relations.Select(it => it.TargetId.ToLong()).ToList();//获取用户ID列表
+                var userIds = relations.Select(it => it.TargetId).ToList();//获取用户ID列表
                 var userInfos = await Context.Queryable<SysUser>()
                     .Where(it => userIds.Contains(it.Id)).Select(it => new { it.Id, it.Name }).ToListAsync();//获取用户姓名信息列表
                                                                                                              //遍历关系
                 relations.ForEach(relation =>
                 {
-                    var user = userInfos.Where(u => u.Id == relation.TargetId.ToLong()).FirstOrDefault();//获取用户信息
+                    var user = userInfos.Where(u => u.Id == relation.TargetId).FirstOrDefault();//获取用户信息
                     if (user != null)
                     {
                         //添加到已读列表

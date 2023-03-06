@@ -17,7 +17,7 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     }
 
     /// <inheritdoc />
-    public async Task<List<string>> GetCodeByIds(List<long> ids, string category)
+    public async Task<List<string>> GetCodeByIds(List<string> ids, string category)
     {
         //根据分类获取所有
         var sysResources = await GetListByCategory(category);
@@ -78,7 +78,7 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     }
 
     /// <inheritdoc />
-    public async Task<List<SysResource>> GetChildListById(long resId, bool isContainOneself = true)
+    public async Task<List<SysResource>> GetChildListById(string resId, bool isContainOneself = true)
     {
         //获取所有机构
         var sysResources = await GetListAsync();
@@ -94,7 +94,7 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     }
 
     /// <inheritdoc />
-    public List<SysResource> GetChildListById(List<SysResource> sysResources, long resId, bool isContainOneself = true)
+    public List<SysResource> GetChildListById(List<SysResource> sysResources, string resId, bool isContainOneself = true)
     {
         //查找下级
         var childLsit = GetResourceChilden(sysResources, resId);
@@ -237,7 +237,7 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     /// <param name="resourceList">资源列表</param>
     /// <param name="parentId">父ID</param>
     /// <returns></returns>
-    public List<SysResource> GetResourceChilden(List<SysResource> resourceList, long parentId)
+    public List<SysResource> GetResourceChilden(List<SysResource> resourceList, string parentId)
     {
         //找下级资源ID列表
         var resources = resourceList.Where(it => it.ParentId == parentId).ToList();
@@ -281,12 +281,12 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     /// </summary>
     /// <param name="moduleId">模块ID</param>
     /// <returns></returns>
-    public async Task<List<ResTreeSelector.RoleGrantResourceMenu>> GetRoleGrantResourceMenus(long moduleId)
+    public async Task<List<ResTreeSelector.RoleGrantResourceMenu>> GetRoleGrantResourceMenus(string moduleId)
     {
         var roleGrantResourceMenus = new List<ResTreeSelector.RoleGrantResourceMenu>();//定义结果
         List<SysResource> allMenuList = (await GetListByCategory(CateGoryConst.Resource_MENU)).Where(it => it.Module == moduleId).ToList();//获取所有菜单列表
         List<SysResource> allButtonList = await GetListByCategory(CateGoryConst.Resource_BUTTON);//获取所有按钮列表
-        var parentMenuList = allMenuList.Where(it => it.ParentId == 0).ToList();//获取一级目录
+        var parentMenuList = allMenuList.Where(it => it.ParentId == SimpleAdminConst.Zero).ToList();//获取一级目录
 
         //遍历一级目录
         foreach (var parent in parentMenuList)
@@ -371,7 +371,7 @@ public class ResourceService : DbRepository<SysResource>, IResourceService
     private string GetRoleGrantResourceMenuTitle(List<SysResource> menuList, SysResource menu)
     {
         //查找菜单上级
-        var parentList = GetResourceParent(menuList, menu.ParentId.Value);
+        var parentList = GetResourceParent(menuList, menu.ParentId);
         //如果有父级菜单
         if (parentList.Count > 0)
         {

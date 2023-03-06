@@ -18,7 +18,7 @@ public interface IDictService : ITransient
     /// <param name="dictList">字典列表</param>
     /// <param name="parentId">父ID</param>
     /// <returns>字典树形结构</returns>
-    List<DevDict> ConstructResourceTrees(List<DevDict> dictList, long parentId = 0);
+    List<DevDict> ConstructResourceTrees(List<DevDict> dictList, string parentId = SimpleAdminConst.Zero);
 
     /// <summary>
     /// 删除字典
