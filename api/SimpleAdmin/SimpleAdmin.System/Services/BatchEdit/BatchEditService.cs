@@ -216,7 +216,7 @@ public class BatchEditService : DbRepository<BatchEdit>, IBatchEditService
     /// <param name="updateBatch"></param>
     private async Task CheckInput(BatchEdit updateBatch)
     {
-        if (updateBatch.Id == 0)
+        if (string.IsNullOrEmpty(updateBatch.Id))
         {
             var isExist = await IsAnyAsync(it => it.Code == updateBatch.Code);
             if (isExist) throw Oops.Bah("唯一编码不能重复");

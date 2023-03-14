@@ -17,7 +17,7 @@ public class BatchEditConfig : PrimaryKeyEntity
     /// 批量配置Id 
     ///</summary>
     [SugarColumn(ColumnName = "UId", ColumnDescription = "批量配置Id", IsNullable = false)]
-    public long UId { get; set; }
+    public string UId { get; set; }
     /// <summary>
     /// 字段名 
     ///</summary>

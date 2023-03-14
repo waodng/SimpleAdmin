@@ -72,7 +72,7 @@ public class BatchEditConfigInput : BatchEditConfig, IValidatableObject
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
@@ -106,7 +106,7 @@ public class BatchEditInput
     /// Id列表
     /// </summary>
     [Required(ErrorMessage = "Ids不能为空")]
-    public List<long>? Ids { get; set; }
+    public List<string>? Ids { get; set; }
 
     /// <summary>
     /// 字段列表

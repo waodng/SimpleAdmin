@@ -44,7 +44,7 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
 
 
     /// <inheritdoc />
-    public async Task<List<long>> AddBatch(ButtonAddInput input)
+    public async Task<List<string>> AddBatch(ButtonAddInput input)
     {
         List<SysResource> sysResources = new List<SysResource>();//按钮列表
         var codeList = new List<string>() { "Add", "Edit", "Delete", "BatchDelete", "BatchEdit" };//code后缀
