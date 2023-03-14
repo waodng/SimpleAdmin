@@ -15,11 +15,6 @@
 		<NoWarn>1701;1702;8616;1591;8618;8629;8602;8603;8604;8625;8765</NoWarn>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <Compile Remove="Gen\**" />
-	  <EmbeddedResource Remove="Gen\**" />
-	  <None Remove="Gen\**" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\SimpleAdmin.Core\SimpleAdmin.Core.csproj" />
@@ -31,6 +26,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="SeedData\Json\batch_edit.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="SeedData\Json\batch_edit_config.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="SeedData\Json\dev_config.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
@@ -38,10 +39,10 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="SeedData\Json\gen_basic.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="SeedData\Json\gen_config.json">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="SeedData\Json\sys_org.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
