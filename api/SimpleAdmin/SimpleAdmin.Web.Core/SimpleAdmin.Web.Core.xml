@@ -1208,12 +1208,6 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.Web.Core.OrgController.Template">
-            <summary>
-            模板下载
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SimpleAdmin.Web.Core.OrgController.UserSelector(SimpleAdmin.System.UserSelectorInput)">
             <summary>
             获取用户选择器
