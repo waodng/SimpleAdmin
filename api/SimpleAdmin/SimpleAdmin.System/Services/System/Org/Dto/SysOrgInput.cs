@@ -10,12 +10,12 @@ public class SysOrgPageInput : BasePageInput
     /// <summary>
     /// 父ID
     /// </summary>
-    public long ParentId { get; set; }
+    public string ParentId { get; set; }
 
     /// <summary>
     /// 机构列表
     /// </summary>
-    public List<long> OrgIds { get; set; }
+    public List<string> OrgIds { get; set; }
 
 }
 
@@ -36,7 +36,7 @@ public class SysOrgEditInput : SysOrgAddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public override long Id { get; set; }
+    public override string Id { get; set; }
 }
 
 /// <summary>
@@ -48,14 +48,14 @@ public class SysOrgCopyInput
     /// <summary>
     /// 目标ID
     /// </summary>
-    public long TargetId { get; set; }
+    public string TargetId { get; set; }
 
 
     /// <summary>
     /// 组织Id列表
     /// </summary>
     [Required(ErrorMessage = "Ids列表不能为空")]
-    public List<long>? Ids { get; set; }
+    public List<string>? Ids { get; set; }
 
     /// <summary>
     /// 是否包含下级
@@ -64,41 +64,3 @@ public class SysOrgCopyInput
 
 }
 
-/// <summary>
-/// 组织导入
-/// </summary>
-public class SysOrgImportInput : ImportTemplateInput
-{
-    /// <summary>
-    /// 名称 
-    ///</summary>
-    [ImporterHeader(Name = "名称")]
-    [Required(ErrorMessage = "名称不能为空")]
-    public string Name { get; set; }
-
-    /// <summary>
-    /// 上级组织
-    ///</summary>
-    [ImporterHeader(Name = "上级组织")]
-    [Required(ErrorMessage = "上级组织不能为空")]
-    public string Names { get; set; }
-
-    /// <summary>
-    /// 分类 
-    ///</summary>
-    [ImporterHeader(Name = "分类")]
-    [Required(ErrorMessage = "分类不能为空")]
-    public string Category { get; set; }
-    /// <summary>
-    /// 排序码 
-    ///</summary>
-    [ImporterHeader(Name = "排序码")]
-    public int SortCode { get; set; } = 1;
-
-    /// <summary>
-    /// 主管账号 
-    ///</summary>
-    [ImporterHeader(Name = "主管账号")]
-    [Required(ErrorMessage = "主管账号不能为空")]
-    public string Director { get; set; }
-}
