@@ -169,7 +169,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
             throw Oops.Bah($"不能包含自己");
         //获取目标组织
         var target = orgList.Where(it => it.Id == input.TargetId).FirstOrDefault();
-        if (target != null || input.TargetId == 0)
+        if (target != null || input.TargetId == SimpleAdminConst.Zero)
         {
             //需要复制的组织名称列表
             var orgNames = orgList.Where(it => ids.Contains(it.Id)).Select(it => it.Name).ToList();
