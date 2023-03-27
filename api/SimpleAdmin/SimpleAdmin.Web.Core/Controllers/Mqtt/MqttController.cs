@@ -38,9 +38,9 @@ public class MqttController
     [NonUnify]
     public async Task<dynamic> Auth([FromBody] MqttAuthInput input)
     {
-        var user = _sysUserService.GetUserByAccount(input.Username);
+        var user = await _sysUserService.GetUserByAccount(input.Username);
         if (user != null)
-            return await _mqttService.Auth(input, user.Id.ToString());
+            return await _mqttService.Auth(input, user.Id);
         else
             return new MqttAuthOutput { };
 

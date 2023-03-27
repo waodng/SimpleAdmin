@@ -94,7 +94,6 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <inheritdoc/>
     public async Task ExitSession(BaseIdInput input)
     {
-        var userId = input.Id.ToString();
         //token列表
         List<TokenInfo> tokenInfos = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, input.Id);
         //从列表中删除

@@ -50,7 +50,7 @@ public class AuthEventSubscriber : IEventSubscriber, ISingleton
             it.LatestLoginIp,
             it.LatestLoginTime,
         }).ExecuteCommandAsync() > 0)
-            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id.ToString(), sysUser); //更新Redis信息
+            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id, sysUser); //更新Redis信息
         await Task.CompletedTask;
     }
 
