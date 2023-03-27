@@ -1,7 +1,4 @@
 ﻿using IPTools.Core;
-using Masuit.Tools.DateTimeExt;
-using Org.BouncyCastle.Crypto.Digests;
-using UAParser;
 
 namespace SimpleAdmin.System;
 
@@ -32,7 +29,6 @@ public class AuthEventSubscriber : IEventSubscriber, ISingleton
         var LoginAddress = GetLoginAddress(loginEvent.Ip);
         var sysUser = loginEvent.SysUser;
         #region 重新赋值属性,设置本次登录信息为最新的信息
-        _db.Tracking(sysUser);//创建跟踪,只更新修改字段
         sysUser.LastLoginAddress = sysUser.LatestLoginAddress;
         sysUser.LastLoginDevice = sysUser.LatestLoginDevice;
         sysUser.LastLoginIp = sysUser.LatestLoginIp;
@@ -42,9 +38,19 @@ public class AuthEventSubscriber : IEventSubscriber, ISingleton
         sysUser.LatestLoginIp = loginEvent.Ip;
         sysUser.LatestLoginTime = loginEvent.DateTime;
         #endregion
-        //更新用户信息
-        if (await _db.UpdateableWithAttr(sysUser).ExecuteCommandAsync() > 0)
-            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id, sysUser); //更新Redis信息
+        //更新用户登录信息
+        if (await _db.UpdateableWithAttr(sysUser).UpdateColumns(it => new
+        {
+            it.LastLoginAddress,
+            it.LastLoginDevice,
+            it.LastLoginIp,
+            it.LastLoginTime,
+            it.LatestLoginAddress,
+            it.LatestLoginDevice,
+            it.LatestLoginIp,
+            it.LatestLoginTime,
+        }).ExecuteCommandAsync() > 0)
+            _simpleRedis.HashAdd(RedisConst.Redis_SysUser, sysUser.Id.ToString(), sysUser); //更新Redis信息
         await Task.CompletedTask;
     }
 
@@ -60,6 +66,8 @@ public class AuthEventSubscriber : IEventSubscriber, ISingleton
         var loginEvent = (LoginEvent)context.Source.Payload;//获取参数
 
     }
+
+
 
     /// <summary>
     /// 解析IP地址

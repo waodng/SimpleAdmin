@@ -1,7 +1,8 @@
-﻿
+﻿namespace SimpleAdmin.Application;
 
-namespace SimpleAdmin.Application;
-
+/// <summary>
+/// AppStartup启动类
+/// </summary>
 public class Startup : AppStartup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -12,4 +13,5 @@ public class Startup : AppStartup
     {
 
     }
+
 }

@@ -1,8 +1,4 @@
-﻿using Masuit.Tools;
-using SimpleAdmin.Core;
-using System.DrawingCore;
-
-namespace SimpleAdmin.System;
+﻿namespace SimpleAdmin.System;
 
 /// <inheritdoc cref="IUserCenterService"/>
 public class UserCenterService : DbRepository<SysUser>, IUserCenterService
@@ -242,7 +238,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
         {
             //找到父ID对应的菜单
             var parent = allMenuList.Where(r => r.Id == it.ParentId).FirstOrDefault();
-            if (parent != null && !parentList.Contains(parent))//如果不为空且夫列表里没有
+            if (parent != null && !parentList.Contains(parent) && !myMenus.Contains(parent))//如果不为空且两个列表里没有
             {
                 parentList.Add(parent);//添加到父列表
             }

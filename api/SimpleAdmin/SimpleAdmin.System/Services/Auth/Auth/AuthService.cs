@@ -1,8 +1,4 @@
-﻿using IPTools.Core.Extensions;
-using Microsoft.AspNetCore.SignalR;
-using UAParser;
-
-namespace SimpleAdmin.System.Services.Auth;
+﻿namespace SimpleAdmin.System.Services.Auth;
 
 /// <inheritdoc cref="IAuthService"/>
 public class AuthService : IAuthService
@@ -12,20 +8,18 @@ public class AuthService : IAuthService
     private readonly IConfigService _configService;
     private readonly ISysUserService _userService;
     private readonly IRoleService _roleService;
-    private readonly INoticeService _noticeService;
 
     public AuthService(ISimpleRedis simpleRedis,
                        IEventPublisher eventPublisher,
                        IConfigService configService,
                        ISysUserService userService,
-                       IRoleService roleService, INoticeService noticeService)
+                       IRoleService roleService)
     {
         _simpleRedis = simpleRedis;
         this._eventPublisher = eventPublisher;
         _configService = configService;
         _userService = userService;
         this._roleService = roleService;
-        this._noticeService = noticeService;
     }
 
     /// <inheritdoc/>
@@ -359,14 +353,18 @@ public class AuthService : IAuthService
     }
 
     /// <summary>
-    /// 单用户登录
+    /// 单用户登录通知用户下线
     /// </summary>
     /// <param name="userId">用户ID</param>
     /// <param name="tokenInfos">Token列表</param>
     private async Task SingleLogin(string userId, List<TokenInfo> tokenInfos)
     {
-        var message = "该账号已在别处登录!";
-        await _noticeService.LoginOut(userId, tokenInfos, message);//通知其他用户下线
+        await _eventPublisher.PublishAsync(EventSubscriberConst.UserLoginOut, new NoticeEvent
+        {
+            Message = "您的账号已在别处登录!",
+            TokenInfos = tokenInfos,
+            UserId = userId
+        }); //通知用户下线
     }
     #endregion
 }

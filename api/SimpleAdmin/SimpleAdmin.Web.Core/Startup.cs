@@ -5,8 +5,9 @@ using Newtonsoft.Json.Serialization;
 namespace SimpleAdmin.Web.Core;
 
 /// <summary>
-/// 启动项配置
+/// Web启动项配置
 /// </summary>
+[AppStartup(99)]
 public class Startup : AppStartup
 {
     public void ConfigureServices(IServiceCollection services)
@@ -75,13 +76,15 @@ public class Startup : AppStartup
         //});
         app.UseEndpoints(endpoints =>
         {
-            //通过 App.GetOptions<TOptions> 获取选项
-            var webSettings = App.GetOptions<WebSettingsOptions>();
-            if (!webSettings.UseMqtt)
+            // 获取插件选项
+            var pluginsOptions = App.GetOptions<PluginSettingsOptions>();
+            //如果通知类型是mqtt
+            if (pluginsOptions.UseSignalR)
             {
                 // 注册集线器
                 endpoints.MapHubs();
             }
+
             endpoints.MapControllers();
         });
     }
