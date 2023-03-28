@@ -97,8 +97,8 @@ public class SessionService : DbRepository<SysUser>, ISessionService
         //token列表
         List<TokenInfo> tokenInfos = _simpleRedis.HashGetOne<List<TokenInfo>>(RedisConst.Redis_UserToken, input.Id);
         //从列表中删除
-        _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { userId });
-        await NoticeUserLoginOut(userId, tokenInfos);
+        _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { input.Id });
+        await NoticeUserLoginOut(input.Id, tokenInfos);
     }
 
     /// <inheritdoc/>
@@ -114,8 +114,8 @@ public class SessionService : DbRepository<SysUser>, ISessionService
         if (tokenInfos.Count > 0)
             _simpleRedis.HashAdd(RedisConst.Redis_UserToken, input.Id, tokenInfos);//如果还有token则更新token
         else
-            _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { userId });//否则直接删除key
-        await NoticeUserLoginOut(userId, deleteTokens);
+            _simpleRedis.HashDel<List<TokenInfo>>(RedisConst.Redis_UserToken, new string[] { input.Id });//否则直接删除key
+        await NoticeUserLoginOut(input.Id, deleteTokens);
     }
     #region 方法
 

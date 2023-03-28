@@ -517,6 +517,25 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:SimpleAdmin.Web.Core.Controllers.System.Gen.GenConfigController">
+            <summary>
+            代码生成配置控制器
+            </summary>
+        </member>
+        <member name="M:SimpleAdmin.Web.Core.Controllers.System.Gen.GenConfigController.List(System.String)">
+            <summary>
+            查询代码生成详细配置列表
+            </summary>
+            <param name="basicId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleAdmin.Web.Core.Controllers.System.Gen.GenConfigController.EditBatch(System.Collections.Generic.List{SimpleAdmin.Core.GenConfig})">
+            <summary>
+            编辑代码生成详细
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:SimpleAdmin.Web.Core.Controllers.System.System.RoleController">
             <summary>
             角色管理控制器

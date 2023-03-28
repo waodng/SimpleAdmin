@@ -384,7 +384,7 @@
         <member name="M:SimpleAdmin.Plugin.Gen.GenBasicService.PreviewGen(SimpleAdmin.Core.GenBasic)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.GenBasicService.GetGenBasic(System.Int64)">
+        <member name="M:SimpleAdmin.Plugin.Gen.GenBasicService.GetGenBasic(System.String)">
             <summary>
             获取代码生成基础
             </summary>
@@ -463,7 +463,7 @@
             <inheritdoc cref="T:SimpleAdmin.Plugin.Gen.IGenConfigSerivce"/>
             </summary>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigSerivce.List(System.Int64)">
+        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigSerivce.List(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.Plugin.Gen.GenConfigSerivce.EditBatch(System.Collections.Generic.List{SimpleAdmin.Core.GenConfig})">
@@ -481,7 +481,7 @@
             <param name="configs"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigSerivce.List(System.Int64)">
+        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigSerivce.List(System.String)">
             <summary>
             查询代码生成详细配置列表
             </summary>

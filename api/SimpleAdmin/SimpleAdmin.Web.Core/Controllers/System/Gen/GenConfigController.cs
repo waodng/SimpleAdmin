@@ -1,4 +1,6 @@
-﻿namespace SimpleAdmin.Web.Core.Controllers.System.Gen
+﻿using SimpleAdmin.Plugin.Gen;
+
+namespace SimpleAdmin.Web.Core.Controllers.System.Gen
 {
 
     /// <summary>
