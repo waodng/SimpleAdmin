@@ -14,7 +14,7 @@ public class GenConfigController : BaseController
 
     public GenConfigController(IGenConfigSerivce genConfigSerivce)
     {
-            this._genConfigSerivce = genConfigSerivce;
+        this._genConfigSerivce = genConfigSerivce;
     }
 
     /// <summary>
@@ -41,5 +41,4 @@ public class GenConfigController : BaseController
     {
         await _genConfigSerivce.EditBatch(input);
     }
-}
 }

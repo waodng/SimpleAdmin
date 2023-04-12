@@ -296,7 +296,7 @@
             <param name="loginEvent">登录事件参数</param>
             <param name="loginClientType">登录类型</param>
         </member>
-        <member name="M:SimpleAdmin.System.Services.Auth.AuthService.GetTokenInfos(System.Int64)">
+        <member name="M:SimpleAdmin.System.Services.Auth.AuthService.GetTokenInfos(System.String)">
             <summary>
             获取用户token列表
             </summary>
@@ -898,7 +898,7 @@
         <member name="M:SimpleAdmin.System.DictService.Tree(SimpleAdmin.System.DictTreeInput)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.DictService.ConstructResourceTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.Int64)">
+        <member name="M:SimpleAdmin.System.DictService.ConstructResourceTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.DictService.RefreshCache">
@@ -912,7 +912,7 @@
             </summary>
             <param name="devDict"></param>
         </member>
-        <member name="M:SimpleAdmin.System.DictService.GetDevDictChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.Int64)">
+        <member name="M:SimpleAdmin.System.DictService.GetDevDictChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.String)">
             <summary>
             获取字典所有下级
             </summary>
@@ -997,7 +997,7 @@
             <param name="input">输入参数</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IDictService.ConstructResourceTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.Int64)">
+        <member name="M:SimpleAdmin.System.IDictService.ConstructResourceTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevDict},System.String)">
             <summary>
             构建字典树形结构
             </summary>
@@ -1101,14 +1101,14 @@
             <param name="engine"></param>
             <param name="file"></param>
         </member>
-        <member name="M:SimpleAdmin.System.FileService.StorageLocal(System.Int64,Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:SimpleAdmin.System.FileService.StorageLocal(System.String,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             存储本地文件
             </summary>
             <param name="fileId"></param>
             <param name="file"></param>
         </member>
-        <member name="M:SimpleAdmin.System.FileService.StorageMinio(System.Int64,Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:SimpleAdmin.System.FileService.StorageMinio(System.String,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             存储到minio
             </summary>
@@ -1243,7 +1243,7 @@
             <param name="input">id列表</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IMessageService.DeleteMyMessage(SimpleAdmin.Core.BaseIdInput,System.Int64)">
+        <member name="M:SimpleAdmin.System.IMessageService.DeleteMyMessage(SimpleAdmin.Core.BaseIdInput,System.String)">
             <summary>
             删除我的消息
             </summary>
@@ -1259,7 +1259,7 @@
             <param name="isSelf">是否是自己</param>
             <returns>消息详情</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IMessageService.MyMessagePage(SimpleAdmin.System.MessagePageInput,System.Int64)">
+        <member name="M:SimpleAdmin.System.IMessageService.MyMessagePage(SimpleAdmin.System.MessagePageInput,System.String)">
             <summary>
             我的消息列表
             </summary>
@@ -1281,7 +1281,7 @@
             <param name="input">站内信信息</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IMessageService.UnReadCount(System.Int64)">
+        <member name="M:SimpleAdmin.System.IMessageService.UnReadCount(System.String)">
             <summary>
             获取未读消息数
             </summary>
@@ -1296,7 +1296,7 @@
         <member name="M:SimpleAdmin.System.MessageService.Page(SimpleAdmin.System.MessagePageInput)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.MessageService.MyMessagePage(SimpleAdmin.System.MessagePageInput,System.Int64)">
+        <member name="M:SimpleAdmin.System.MessageService.MyMessagePage(SimpleAdmin.System.MessagePageInput,System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.MessageService.Send(SimpleAdmin.System.MessageSendInput)">
@@ -1308,10 +1308,10 @@
         <member name="M:SimpleAdmin.System.MessageService.Delete(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.MessageService.DeleteMyMessage(SimpleAdmin.Core.BaseIdInput,System.Int64)">
+        <member name="M:SimpleAdmin.System.MessageService.DeleteMyMessage(SimpleAdmin.Core.BaseIdInput,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.MessageService.UnReadCount(System.Int64)">
+        <member name="M:SimpleAdmin.System.MessageService.UnReadCount(System.String)">
             <inheritdoc />
         </member>
         <member name="T:SimpleAdmin.System.OperateLogPageInput">
@@ -1597,6 +1597,56 @@
         <member name="M:SimpleAdmin.System.IndexService.DeleteSchedule(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
             <inheritdoc/>
         </member>
+        <member name="T:SimpleAdmin.System.OrgPageInput">
+            <summary>
+            组织分页查询参数
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgPageInput.ParentId">
+            <summary>
+            父ID
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgPageInput.OrgIds">
+            <summary>
+            机构列表
+            </summary>
+        </member>
+        <member name="T:SimpleAdmin.System.OrgAddInput">
+            <summary>
+            组织添加参数
+            </summary>
+        </member>
+        <member name="T:SimpleAdmin.System.OrgEditInput">
+            <summary>
+            组织修改参数
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgEditInput.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:SimpleAdmin.System.OrgCopyInput">
+            <summary>
+            组织复制参数
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgCopyInput.TargetId">
+            <summary>
+            目标ID
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgCopyInput.Ids">
+            <summary>
+            组织Id列表
+            </summary>
+        </member>
+        <member name="P:SimpleAdmin.System.OrgCopyInput.ContainsChild">
+            <summary>
+            是否包含下级
+            </summary>
+        </member>
         <member name="T:SimpleAdmin.System.SysOrgPageInput">
             <summary>
             组织分页查询参数
@@ -1647,42 +1697,12 @@
             是否包含下级
             </summary>
         </member>
-        <member name="T:SimpleAdmin.System.SysOrgImportInput">
-            <summary>
-            组织导入
-            </summary>
-        </member>
-        <member name="P:SimpleAdmin.System.SysOrgImportInput.Name">
-             <summary>
-             名称 
-            </summary>
-        </member>
-        <member name="P:SimpleAdmin.System.SysOrgImportInput.Names">
-             <summary>
-             上级组织
-            </summary>
-        </member>
-        <member name="P:SimpleAdmin.System.SysOrgImportInput.Category">
-             <summary>
-             分类 
-            </summary>
-        </member>
-        <member name="P:SimpleAdmin.System.SysOrgImportInput.SortCode">
-             <summary>
-             排序码 
-            </summary>
-        </member>
-        <member name="P:SimpleAdmin.System.SysOrgImportInput.Director">
-             <summary>
-             主管账号 
-            </summary>
-        </member>
         <member name="T:SimpleAdmin.System.ISysOrgService">
             <summary>
             组织架构服务
             </summary>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.IsExistOrgByName(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.Int64,System.Int64@)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.IsExistOrgByName(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.String,System.String@)">
             <summary>
             检查组织是否存在
             </summary>
@@ -1699,7 +1719,7 @@
             <param name="input">id参数</param>
             <returns>组织信息</returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.GetChildListById(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.GetChildListById(System.String,System.Boolean)">
             <summary>
             根据组织ID获取 下级
             </summary>
@@ -1713,7 +1733,7 @@
             </summary>
             <returns>组织列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.GetOrgChildIds(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.GetOrgChildIds(System.String,System.Boolean)">
             <summary>
             获取机构及下级ID列表
             </summary>
@@ -1721,7 +1741,7 @@
             <param name="isContainOneself"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.GetOrgParents(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.GetOrgParents(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.Boolean)">
             <summary>
             根据组织Id递归获取上级
             </summary>
@@ -1730,7 +1750,7 @@
             <param name="includeSelf">是否包含自己</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.GetSysOrgById(System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.GetSysOrgById(System.String)">
             <summary>
             获取组织信息
             </summary>
@@ -1775,7 +1795,7 @@
             <param name="name">名称</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysOrgService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String)">
             <summary>
             构建组织树形结构
             </summary>
@@ -1789,7 +1809,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysOrgService.Tree(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.ISysOrgService.Tree(System.Collections.Generic.List{System.String})">
             <summary>
             获取组织树型结构
             </summary>
@@ -1802,28 +1822,28 @@
         <member name="M:SimpleAdmin.System.SysOrgService.GetListAsync">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetSysOrgById(System.Int64)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetSysOrgById(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetChildListById(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetChildListById(System.String,System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetOrgChildIds(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetOrgChildIds(System.String,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.Page(SimpleAdmin.System.SysOrgPageInput)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.Tree(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.SysOrgService.Tree(System.Collections.Generic.List{System.String})">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.Detail(SimpleAdmin.Core.BaseIdInput)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetOrgParents(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetOrgParents(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.IsExistOrgByName(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.Int64,System.Int64@)">
+        <member name="M:SimpleAdmin.System.SysOrgService.IsExistOrgByName(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.String,System.String@)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.Add(SimpleAdmin.System.SysOrgAddInput,System.String)">
@@ -1841,7 +1861,7 @@
         <member name="M:SimpleAdmin.System.SysOrgService.RefreshCache">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64)">
+        <member name="M:SimpleAdmin.System.SysOrgService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.CheckInput(SimpleAdmin.Plugin.SqlSugar.SysOrg,System.String)">
@@ -1851,7 +1871,7 @@
             <param orgName="sysOrg"></param>
             <param orgName="name">名称</param>
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetParentListByIds(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetParentListByIds(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Collections.Generic.List{System.String})">
             <summary>
             根据组织Id列表获取所有父级组织
             </summary>
@@ -1859,7 +1879,7 @@
             <param orgName="orgIds">机构Id列表</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetSysOrgChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetSysOrgChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String)">
             <summary>
             获取组织所有下级
             </summary>
@@ -1867,7 +1887,7 @@
             <param orgName="parentId">父ID</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.CopySysOrgChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64,System.Int64)">
+        <member name="M:SimpleAdmin.System.SysOrgService.CopySysOrgChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.String)">
             <summary>
             赋值组织的所有下级
             </summary>
@@ -1882,7 +1902,7 @@
             </summary>
             <param orgName="org"></param>
         </member>
-        <member name="M:SimpleAdmin.System.SysOrgService.GetNames(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64,System.String)">
+        <member name="M:SimpleAdmin.System.SysOrgService.GetNames(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.String)">
             <summary>
             获取全称
             </summary>
@@ -1980,7 +2000,7 @@
             </summary>
             <returns>职位列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysPositionService.GetSysPositionById(System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysPositionService.GetSysPositionById(System.String)">
             <summary>
             获取职位信息
             </summary>
@@ -2018,7 +2038,7 @@
         <member name="M:SimpleAdmin.System.SysPositionService.PositionSelector(SimpleAdmin.System.PositionSelectorInput)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysPositionService.GetSysPositionById(System.Int64)">
+        <member name="M:SimpleAdmin.System.SysPositionService.GetSysPositionById(System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.Page(SimpleAdmin.System.PositionPageInput)">
@@ -2055,7 +2075,7 @@
             <param name="category">分类名称</param>
             <returns>关系表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRelationService.GetRelationListByObjectIdAndCategory(System.Int64,System.String)">
+        <member name="M:SimpleAdmin.System.IRelationService.GetRelationListByObjectIdAndCategory(System.String,System.String)">
             <summary>
             通过对象ID和分类获取关系列表
             </summary>
@@ -2063,7 +2083,7 @@
             <param name="category">分类</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRelationService.GetRelationListByObjectIdListAndCategory(System.Collections.Generic.List{System.Int64},System.String)">
+        <member name="M:SimpleAdmin.System.IRelationService.GetRelationListByObjectIdListAndCategory(System.Collections.Generic.List{System.String},System.String)">
             <summary>
             通过对象ID列表和分类获取关系列表
             </summary>
@@ -2087,7 +2107,7 @@
             <param name="category"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRelationService.GetWorkbench(System.Int64)">
+        <member name="M:SimpleAdmin.System.IRelationService.GetWorkbench(System.String)">
             <summary>
             获取关系表用户工作台
             </summary>
@@ -2101,7 +2121,7 @@
             <param name="category">分类</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRelationService.SaveRelation(System.String,System.Int64,System.String,System.String,System.Boolean,System.Boolean)">
+        <member name="M:SimpleAdmin.System.IRelationService.SaveRelation(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             保存关系
             </summary>
@@ -2113,7 +2133,7 @@
             <param name="refreshCache">是否刷新缓存</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRelationService.SaveRelationBatch(System.String,System.Int64,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
+        <member name="M:SimpleAdmin.System.IRelationService.SaveRelationBatch(System.String,System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
             <summary>
             批量保存关系
             </summary>
@@ -2130,13 +2150,13 @@
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationByCategory(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdAndCategory(System.Int64,System.String)">
+        <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdAndCategory(System.String,System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.Relationservice.GetWorkbench(System.Int64)">
+        <member name="M:SimpleAdmin.System.Relationservice.GetWorkbench(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdListAndCategory(System.Collections.Generic.List{System.Int64},System.String)">
+        <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdListAndCategory(System.Collections.Generic.List{System.String},System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByTargetIdAndCategory(System.String,System.String)">
@@ -2148,10 +2168,10 @@
         <member name="M:SimpleAdmin.System.Relationservice.RefreshCache(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.Relationservice.SaveRelationBatch(System.String,System.Int64,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
+        <member name="M:SimpleAdmin.System.Relationservice.SaveRelationBatch(System.String,System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.Relationservice.SaveRelation(System.String,System.Int64,System.String,System.String,System.Boolean,System.Boolean)">
+        <member name="M:SimpleAdmin.System.Relationservice.SaveRelation(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
             <inheritdoc/>
         </member>
         <member name="T:SimpleAdmin.System.ButtonService">
@@ -2347,7 +2367,7 @@
             <param name="input">id</param>
             <returns>详细信息</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IMenuService.ConstructMenuTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64)">
+        <member name="M:SimpleAdmin.System.IMenuService.ConstructMenuTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
             <summary>
             构建菜单树形结构
             </summary>
@@ -2388,7 +2408,7 @@
             <inheritdoc cref="T:SimpleAdmin.System.IMenuService"/>
             </summary>
         </member>
-        <member name="M:SimpleAdmin.System.MenuService.ConstructMenuTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64)">
+        <member name="M:SimpleAdmin.System.MenuService.ConstructMenuTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.MenuService.Tree(SimpleAdmin.System.MenuTreeInput)">
@@ -2587,7 +2607,7 @@
             </summary>
             <returns>所有的菜单和模块以及单页面列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IResourceService.GetChildListById(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.IResourceService.GetChildListById(System.String,System.Boolean)">
             <summary>
             根据资源ID获取所有下级资源
             </summary>
@@ -2595,7 +2615,7 @@
             <param name="isContainOneself">是否包含自己</param>
             <returns>资源列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IResourceService.GetChildListById(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.IResourceService.GetChildListById(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String,System.Boolean)">
             <summary>
             根据资源ID获取所有下级资源
             </summary>
@@ -2604,7 +2624,7 @@
             <param name="isContainOneself">是否包含自己</param>
             <returns>资源列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IResourceService.GetCodeByIds(System.Collections.Generic.List{System.Int64},System.String)">
+        <member name="M:SimpleAdmin.System.IResourceService.GetCodeByIds(System.Collections.Generic.List{System.String},System.String)">
             <summary>
             获取ID获取Code列表
             </summary>
@@ -2626,7 +2646,7 @@
             <param name="category">分类名称</param>
             <returns>资源列表</returns>
         </member>
-        <member name="M:SimpleAdmin.System.IResourceService.GetMenuByMenuIds(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.IResourceService.GetMenuByMenuIds(System.Collections.Generic.List{System.String})">
             <summary>
             根据菜单ID获取菜单
             </summary>
@@ -2656,7 +2676,7 @@
         <member name="T:SimpleAdmin.System.ResourceService">
             <inheritdoc cref="T:SimpleAdmin.System.IResourceService"/>
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetCodeByIds(System.Collections.Generic.List{System.Int64},System.String)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetCodeByIds(System.Collections.Generic.List{System.String},System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetListAsync(System.Collections.Generic.List{System.String})">
@@ -2668,10 +2688,10 @@
         <member name="M:SimpleAdmin.System.ResourceService.RefreshCache(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetChildListById(System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetChildListById(System.String,System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetChildListById(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64,System.Boolean)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetChildListById(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetListByCategory(System.String)">
@@ -2683,7 +2703,7 @@
         <member name="M:SimpleAdmin.System.ResourceService.PermissionTreeSelector(System.Collections.Generic.List{System.String})">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetMenuByMenuIds(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.ResourceService.GetMenuByMenuIds(System.Collections.Generic.List{System.String})">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetRouteName(System.String,System.String)">
@@ -2694,7 +2714,7 @@
             <param name="template">路由名称</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetResourceChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetResourceChilden(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
             <summary>
             获取资源所有下级
             </summary>
@@ -2702,7 +2722,7 @@
             <param name="parentId">父ID</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetResourceParent(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetResourceParent(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
             <summary>
             获取上级
             </summary>
@@ -2710,7 +2730,7 @@
             <param name="parentId"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ResourceService.GetRoleGrantResourceMenus(System.Int64)">
+        <member name="M:SimpleAdmin.System.ResourceService.GetRoleGrantResourceMenus(System.String)">
             <summary>
             获取授权菜单
             </summary>
@@ -2987,7 +3007,7 @@
             <param name="input">编辑参数</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.IRoleService.GetRoleListByUserId(System.Int64)">
+        <member name="M:SimpleAdmin.System.IRoleService.GetRoleListByUserId(System.String)">
             <summary>
             根据用户ID获取用户角色集合
             </summary>
@@ -3072,7 +3092,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.RoleService.GetRoleListByUserId(System.Int64)">
+        <member name="M:SimpleAdmin.System.RoleService.GetRoleListByUserId(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.RoleService.Page(SimpleAdmin.System.RolePageInput)">
@@ -3307,7 +3327,7 @@
             <param name="myMenus">我的菜单列表</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.UserCenterService.GetMyModules(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Collections.Generic.List{System.Int64},System.Int32)">
+        <member name="M:SimpleAdmin.System.UserCenterService.GetMyModules(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Collections.Generic.List{System.String},System.Int32)">
             <summary>
             获取我的模块集合
             </summary>
@@ -3316,14 +3336,14 @@
             <param name="spaCount"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.UserCenterService.ConstructMeta(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.Int64)">
+        <member name="M:SimpleAdmin.System.UserCenterService.ConstructMeta(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
             <summary>
             构建Meta
             </summary>
             <param name="myMenus">我的菜单集合</param>
             <param name="firstSpaId">第一个单页面ID</param>
         </member>
-        <member name="M:SimpleAdmin.System.UserCenterService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.Int64,System.Int64)">
+        <member name="M:SimpleAdmin.System.UserCenterService.ConstrucOrgTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysOrg},System.String,System.String)">
             <summary>
             构建机构树
             </summary>
@@ -3769,7 +3789,7 @@
             用户服务
             </summary>
         </member>
-        <member name="M:SimpleAdmin.System.ISysUserService.GetButtonCodeList(System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysUserService.GetButtonCodeList(System.String)">
             <summary>
             根据用户ID获取按钮ID集合
             </summary>
@@ -3783,7 +3803,7 @@
             <param name="account">用户名</param>
             <returns>用户信息</returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysUserService.GetPermissionListByUserId(System.Int64,System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysUserService.GetPermissionListByUserId(System.String,System.String)">
             <summary>
             根据用户ID和机构ID获取角色权限
             </summary>
@@ -3819,7 +3839,7 @@
             <param name="input">查询</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysUserService.GetUserById(System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysUserService.GetUserById(System.String)">
             <summary>
             根据用户Id获取用户信息
             </summary>
@@ -3937,13 +3957,13 @@
             <param name="input">Id列表</param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.System.ISysUserService.DeleteUserFromRedis(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.ISysUserService.DeleteUserFromRedis(System.Collections.Generic.List{System.String})">
             <summary>
             从redis中删除用户信息
             </summary>
             <param name="ids">用户ID列表</param>
         </member>
-        <member name="M:SimpleAdmin.System.ISysUserService.DeleteUserFromRedis(System.Int64)">
+        <member name="M:SimpleAdmin.System.ISysUserService.DeleteUserFromRedis(System.String)">
             <summary>
             从redis中删除用户信息
             </summary>
@@ -4012,16 +4032,16 @@
         <member name="M:SimpleAdmin.System.SysUserService.GetIdByPhone(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.GetUserById(System.Int64)">
+        <member name="M:SimpleAdmin.System.SysUserService.GetUserById(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetIdByAccount(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.GetButtonCodeList(System.Int64)">
+        <member name="M:SimpleAdmin.System.SysUserService.GetButtonCodeList(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.GetPermissionListByUserId(System.Int64,System.Int64)">
+        <member name="M:SimpleAdmin.System.SysUserService.GetPermissionListByUserId(System.String,System.String)">
             <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetLoginUserApiDataScope">
@@ -4078,10 +4098,10 @@
         <member name="M:SimpleAdmin.System.SysUserService.Delete(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.DeleteUserFromRedis(System.Int64)">
+        <member name="M:SimpleAdmin.System.SysUserService.DeleteUserFromRedis(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.DeleteUserFromRedis(System.Collections.Generic.List{System.Int64})">
+        <member name="M:SimpleAdmin.System.SysUserService.DeleteUserFromRedis(System.Collections.Generic.List{System.String})">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Template">
@@ -4114,7 +4134,7 @@
             </summary>
             <param name="sysUser"></param>
         </member>
-        <member name="M:SimpleAdmin.System.SysUserService.CheckSelf(System.Int64,System.String)">
+        <member name="M:SimpleAdmin.System.SysUserService.CheckSelf(System.String,System.String)">
             <summary>
             检查是否为自己
             </summary>
