@@ -94,6 +94,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <inheritdoc/>
     public async Task ExitSession(BaseIdInput input)
     {
+        var userId = input.Id;
         //token列表
         List<TokenInfo> tokenInfos = _simpleCacheService.HashGetOne<List<TokenInfo>>(CacheConst.Cache_UserToken, userId);
         //从列表中删除
@@ -104,7 +105,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <inheritdoc/>
     public async Task ExitToken(ExitTokenInput input)
     {
-
+        var userId = input.Id;
         //获取该用户的token信息
         var tokenInfos = _simpleCacheService.HashGetOne<List<TokenInfo>>(CacheConst.Cache_UserToken, userId);
         //当前需要踢掉用户的token
@@ -188,7 +189,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <returns></returns>
     private async Task NoticeUserLoginOut(string userId, List<TokenInfo> tokenInfos)
     {
-        await _eventPublisher.PublishAsync(EventSubscriberConst.UserLoginOut, new NoticeEvent
+        await _eventPublisher.PublishAsync(EventSubscriberConst.UserLoginOut, new UserLoginOutEvent
         {
             Message = "您已被强制下线!",
             TokenInfos = tokenInfos,

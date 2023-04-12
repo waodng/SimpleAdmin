@@ -8,15 +8,6 @@ public class MessagePageInput : BasePageInput
     /// </summary>
     public string Category { get; set; }
 
-    /// <summary>
-    /// 接收用户id
-    /// </summary>
-    public string ReceiveUserId { get; set; }
-
-    /// <summary>
-    /// 消息id列表
-    /// </summary>
-    public List<string> Ids { get; set; }
 }
 
 /// <summary>

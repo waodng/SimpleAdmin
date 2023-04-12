@@ -1,5 +1,6 @@
 ﻿using Furion.InstantMessaging;
 using Masuit.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Connections;
 
 namespace SimpleAdmin.Plugin.SignalR;
