@@ -137,7 +137,7 @@ public class UserCenterService : DbRepository<SysUser>, IUserCenterService
         if (topOrg != null)
         {
             var orgs = await _sysOrgService.GetChildListById(topOrg.Id);//获取下级
-            var orgTree = ConstrucOrgTrees(orgs, 0, UserManager.OrgId);//获取组织架构
+            var orgTree = ConstrucOrgTrees(orgs, SimpleAdminConst.Zero, UserManager.OrgId);//获取组织架构
             return orgTree;
         }
         return new List<LoginOrgTreeOutput>();
