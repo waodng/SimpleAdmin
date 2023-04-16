@@ -1,12 +1,10 @@
 ﻿namespace SimpleAdmin.System;
 
-
 /// <summary>
 /// 组织分页查询参数
 /// </summary>
 public class OrgPageInput : BasePageInput
 {
-
     /// <summary>
     /// 父ID
     /// </summary>
@@ -16,7 +14,6 @@ public class OrgPageInput : BasePageInput
     /// 机构列表
     /// </summary>
     public List<string> OrgIds { get; set; }
-
 }
 
 /// <summary>
@@ -24,7 +21,6 @@ public class OrgPageInput : BasePageInput
 /// </summary>
 public class OrgAddInput : SysOrg
 {
-
 }
 
 /// <summary>
@@ -44,14 +40,10 @@ public class OrgEditInput : OrgAddInput
 /// </summary>
 public class OrgCopyInput
 {
-
-
-
     /// <summary>
     /// 目标ID
     /// </summary>
     public string TargetId { get; set; }
-
 
     /// <summary>
     /// 组织Id列表
@@ -63,5 +55,4 @@ public class OrgCopyInput
     /// 是否包含下级
     /// </summary>
     public bool ContainsChild { get; set; } = false;
-
 }

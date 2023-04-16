@@ -4,8 +4,6 @@ public class SimpleAdminConst
 {
     #region 操作
 
-
-
     /// <summary>
     /// 添加操作
     /// </summary>
@@ -36,7 +34,7 @@ public class SimpleAdminConst
     /// </summary>
     public const string GrantRole = "授权";
 
-    #endregion
+    #endregion 操作
 
     #region 别称
 
@@ -59,15 +57,11 @@ public class SimpleAdminConst
     /// 岗位
     /// </summary>
     public const string BizPos = "岗位";
-    #endregion
 
-    #region 文件地址
-
-    #endregion
+    #endregion 别称
 
     /// <summary>
     /// 0
     /// </summary>
     public const string Zero = "0";
-
 }
