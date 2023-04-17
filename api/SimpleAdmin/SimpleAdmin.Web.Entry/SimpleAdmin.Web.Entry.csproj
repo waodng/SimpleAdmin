@@ -7,10 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="Controllers\**" />
-		<Content Remove="Controllers\**" />
-		<EmbeddedResource Remove="Controllers\**" />
-		<None Remove="Controllers\**" />
+		<Compile Remove="wwwroot\CodeGen\**" />
+		<Content Remove="wwwroot\CodeGen\**" />
+		<EmbeddedResource Remove="wwwroot\CodeGen\**" />
+		<None Remove="wwwroot\CodeGen\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="ip2region.db">
@@ -18,10 +18,10 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\SimpleAdmin.Web.Core\SimpleAdmin.Web.Core.csproj" />
+		<ProjectReference Include="..\SimpleAdmin.Web.Core\SimpleAdmin.Web.Core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="wwwroot\" />
+		<Folder Include="wwwroot\" />
 	</ItemGroup>
 	<ProjectExtensions>
 		<VisualStudio>
