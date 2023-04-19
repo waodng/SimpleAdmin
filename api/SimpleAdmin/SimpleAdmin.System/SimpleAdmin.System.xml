@@ -222,25 +222,25 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.Services.Auth.AuthService">
-            <inheritdoc cref="T:SimpleAdmin.System.IAuthService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IAuthService"/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.GetCaptchaInfo">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.GetPhoneValidCode(SimpleAdmin.System.GetPhoneValidCodeInput,SimpleAdmin.Core.LoginClientTypeEnum)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.Login(SimpleAdmin.System.LoginInput,SimpleAdmin.Core.LoginClientTypeEnum)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.LoginByPhone(SimpleAdmin.System.LoginByPhoneInput,SimpleAdmin.Core.LoginClientTypeEnum)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.LoginOut(System.String,SimpleAdmin.Core.LoginClientTypeEnum)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.GetLoginUser">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Services.Auth.AuthService.ValidValidCode(System.String,System.String,System.Boolean)">
             <summary>
@@ -692,23 +692,23 @@
         </member>
         <member name="T:SimpleAdmin.System.SessionService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.ISessionService" />
+            <inheritdoc cref="T:SimpleAdmin.System.ISessionService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.PageB(SimpleAdmin.System.SessionPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.PageC(SimpleAdmin.System.SessionPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.Analysis">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.ExitSession(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.ExitToken(SimpleAdmin.System.ExitTokenInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SessionService.GetTokenDicFromRedis">
             <summary>
@@ -730,28 +730,28 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.ConfigService">
-            <inheritdoc cref="T:SimpleAdmin.System.IConfigService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IConfigService"/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.GetListByCategory(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.GetByConfigKey(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.Page(SimpleAdmin.System.ConfigPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.Add(SimpleAdmin.System.ConfigAddInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.Edit(SimpleAdmin.System.ConfigEditInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.Delete(SimpleAdmin.System.ConfigDeleteInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.EditBatch(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.DevConfig})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ConfigService.RefreshCache(System.String)">
             <summary>
@@ -868,7 +868,7 @@
         </member>
         <member name="T:SimpleAdmin.System.DictService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IDictService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IDictService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.DictService.Page(SimpleAdmin.System.DictPageInput)">
@@ -1073,26 +1073,26 @@
         </member>
         <member name="T:SimpleAdmin.System.FileService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IFileService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IFileService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.FileService.Page(SimpleAdmin.System.FilePageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.UploadFile(System.String,Microsoft.AspNetCore.Http.IFormFile)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.Delete(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.GetFileStreamResult(System.String,System.String,System.Boolean)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.GetFileStreamResult(System.Byte[],System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.Download(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.FileService.StorageFile(System.String,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
@@ -1290,7 +1290,7 @@
         </member>
         <member name="T:SimpleAdmin.System.MessageService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IMessageService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IMessageService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.MessageService.Page(SimpleAdmin.System.MessagePageInput)">
@@ -1390,7 +1390,7 @@
         </member>
         <member name="T:SimpleAdmin.System.OperateLogService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IOperateLogService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IOperateLogService"/>
             </summary>
         </member>
         <member name="F:SimpleAdmin.System.OperateLogService.NameOperate">
@@ -1512,7 +1512,7 @@
         </member>
         <member name="T:SimpleAdmin.System.VisitLogService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IVisitLogService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IVisitLogService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.VisitLogService.Page(SimpleAdmin.System.VisitLogPageInput)">
@@ -1585,17 +1585,17 @@
         </member>
         <member name="T:SimpleAdmin.System.IndexService">
             <summary>
-             <inheritdoc cref="T:SimpleAdmin.System.IIndexService" />
+             <inheritdoc cref="T:SimpleAdmin.System.IIndexService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.IndexService.ScheduleList(SimpleAdmin.System.ScheduleListInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.IndexService.AddSchedule(SimpleAdmin.System.ScheduleAddInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.IndexService.DeleteSchedule(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:SimpleAdmin.System.OrgPageInput">
             <summary>
@@ -1817,7 +1817,7 @@
             <returns>组织树列表</returns>
         </member>
         <member name="T:SimpleAdmin.System.SysOrgService">
-            <inheritdoc cref="T:SimpleAdmin.System.ISysOrgService" />
+            <inheritdoc cref="T:SimpleAdmin.System.ISysOrgService"/>
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.GetListAsync">
             <inheritdoc />
@@ -1832,7 +1832,7 @@
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.Page(SimpleAdmin.System.SysOrgPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysOrgService.Tree(System.Collections.Generic.List{System.String})">
             <inheritdoc />
@@ -2029,20 +2029,20 @@
         </member>
         <member name="T:SimpleAdmin.System.SysPositionService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.ISysPositionService" />
+            <inheritdoc cref="T:SimpleAdmin.System.ISysPositionService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.GetListAsync">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.PositionSelector(SimpleAdmin.System.PositionSelectorInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.GetSysPositionById(System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.Page(SimpleAdmin.System.PositionPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysPositionService.Add(SimpleAdmin.System.PositionAddInput,System.String)">
             <inheritdoc />
@@ -2145,42 +2145,42 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.Relationservice">
-            <inheritdoc cref="T:SimpleAdmin.System.IRelationService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IRelationService"/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationByCategory(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdAndCategory(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetWorkbench(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByObjectIdListAndCategory(System.Collections.Generic.List{System.String},System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByTargetIdAndCategory(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.GetRelationListByTargetIdListAndCategory(System.Collections.Generic.List{System.String},System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.RefreshCache(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.SaveRelationBatch(System.String,System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.Relationservice.SaveRelation(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:SimpleAdmin.System.ButtonService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IButtonService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IButtonService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.ButtonService.Page(SimpleAdmin.System.ButtonPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ButtonService.Add(SimpleAdmin.System.ButtonAddInput)">
             <inheritdoc />
@@ -2405,11 +2405,11 @@
         </member>
         <member name="T:SimpleAdmin.System.MenuService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IMenuService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IMenuService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.MenuService.ConstructMenuTrees(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysResource},System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.MenuService.Tree(SimpleAdmin.System.MenuTreeInput)">
             <inheritdoc />
@@ -2490,11 +2490,11 @@
         </member>
         <member name="T:SimpleAdmin.System.ModuleService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.IModuleService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IModuleService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.ModuleService.Page(SimpleAdmin.System.ModulePageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ModuleService.Add(SimpleAdmin.System.ModuleAddInput)">
             <inheritdoc />
@@ -2674,19 +2674,19 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.ResourceService">
-            <inheritdoc cref="T:SimpleAdmin.System.IResourceService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IResourceService"/>
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetCodeByIds(System.Collections.Generic.List{System.String},System.String)">
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetListAsync(System.Collections.Generic.List{System.String})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetaModuleAndMenuAndSpaList">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.RefreshCache(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.ResourceService.GetChildListById(System.String,System.Boolean)">
             <inheritdoc />
@@ -2825,11 +2825,11 @@
         </member>
         <member name="T:SimpleAdmin.System.SpaService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.ISpaService" />
+            <inheritdoc cref="T:SimpleAdmin.System.ISpaService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.SpaService.Page(SimpleAdmin.System.SpaPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SpaService.Add(SimpleAdmin.System.SpaAddInput)">
             <inheritdoc />
@@ -3084,7 +3084,7 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.RoleService">
-            <inheritdoc cref="T:SimpleAdmin.System.IRoleService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IRoleService"/>
         </member>
         <member name="M:SimpleAdmin.System.RoleService.GetListAsync">
             <summary>
@@ -3093,10 +3093,10 @@
             <returns></returns>
         </member>
         <member name="M:SimpleAdmin.System.RoleService.GetRoleListByUserId(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.RoleService.Page(SimpleAdmin.System.RolePageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.RoleService.Add(SimpleAdmin.System.RoleAddInput)">
             <inheritdoc />
@@ -3311,7 +3311,7 @@
             <returns></returns>
         </member>
         <member name="T:SimpleAdmin.System.UserCenterService">
-            <inheritdoc cref="T:SimpleAdmin.System.IUserCenterService" />
+            <inheritdoc cref="T:SimpleAdmin.System.IUserCenterService"/>
         </member>
         <member name="M:SimpleAdmin.System.UserCenterService.GetOwnMenu">
             <inheritdoc />
@@ -3873,7 +3873,7 @@
             <summary>
             根据用户Id获取用户信息
             </summary>
-            <param name="Id">用户ID</param>
+            <param name="userId">用户ID</param>
             <returns>用户信息</returns>
         </member>
         <member name="M:SimpleAdmin.System.ISysUserService.GetIdByAccount(System.String)">
@@ -4050,44 +4050,44 @@
         </member>
         <member name="T:SimpleAdmin.System.SysUserService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.System.ISysUserService" />
+            <inheritdoc cref="T:SimpleAdmin.System.ISysUserService"/>
             </summary>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetUserByAccount(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetUserByPhone(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetIdByPhone(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetUserById(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetIdByAccount(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetButtonCodeList(System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetPermissionListByUserId(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetLoginUserApiDataScope">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.UserSelector(SimpleAdmin.System.UserSelectorInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Page(SimpleAdmin.System.UserPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.List(SimpleAdmin.System.UserPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.OwnRole(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.OwnResource(SimpleAdmin.Core.BaseIdInput)">
             <inheritdoc />
@@ -4099,22 +4099,22 @@
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Add(SimpleAdmin.System.UserAddInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Edit(SimpleAdmin.System.UserEditInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Edits(SimpleAdmin.Plugin.Batch.BatchEditInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.DisableUser(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.EnableUser(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.ResetPassword(SimpleAdmin.Core.BaseIdInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GrantRole(SimpleAdmin.System.UserGrantRoleInput)">
             <inheritdoc />
@@ -4126,7 +4126,7 @@
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Delete(System.Collections.Generic.List{SimpleAdmin.Core.BaseIdInput})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.DeleteUserFromRedis(System.String)">
             <inheritdoc />
@@ -4135,22 +4135,22 @@
             <inheritdoc />
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Template">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Preview(SimpleAdmin.Plugin.ImportExport.ImportPreviewInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Import(SimpleAdmin.Plugin.ImportExport.ImportResultInput{SimpleAdmin.System.SysUserImportInput})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.Export(SimpleAdmin.System.UserPageInput)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.CheckImport``1(System.Collections.Generic.List{``0},System.Boolean)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.SetUserDefault(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.SysUser})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:SimpleAdmin.System.SysUserService.GetDefaultPassWord(System.Boolean)">
             <summary>

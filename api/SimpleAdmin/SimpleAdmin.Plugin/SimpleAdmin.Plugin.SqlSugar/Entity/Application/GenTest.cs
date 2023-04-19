@@ -11,7 +11,7 @@ public class GenTest : DataEntityBase
 {
     /// <summary>
     /// 姓名
-    /// </summary>
+    /// </summary>  
     public string Name { get; set; }
 
     /// <summary>
