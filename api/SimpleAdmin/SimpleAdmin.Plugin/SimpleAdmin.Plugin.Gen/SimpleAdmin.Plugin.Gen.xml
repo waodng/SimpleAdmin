@@ -489,30 +489,30 @@
             <param name="input">代码生成基础Id</param>
             <returns>预览结果</returns>
         </member>
-        <member name="T:SimpleAdmin.Plugin.Gen.GenConfigSerivce">
+        <member name="T:SimpleAdmin.Plugin.Gen.GenConfigService">
             <summary>
-            <inheritdoc cref="T:SimpleAdmin.Plugin.Gen.IGenConfigSerivce"/>
+            <inheritdoc cref="T:SimpleAdmin.Plugin.Gen.IGenConfigService"/>
             </summary>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigSerivce.List(System.String)">
+        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigService.List(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigSerivce.EditBatch(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.GenConfig})">
+        <member name="M:SimpleAdmin.Plugin.Gen.GenConfigService.EditBatch(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.GenConfig})">
             <inheritdoc/>
         </member>
-        <member name="T:SimpleAdmin.Plugin.Gen.IGenConfigSerivce">
+        <member name="T:SimpleAdmin.Plugin.Gen.IGenConfigService">
             <summary>
             代码生成详细配置服务
             </summary>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigSerivce.EditBatch(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.GenConfig})">
+        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigService.EditBatch(System.Collections.Generic.List{SimpleAdmin.Plugin.SqlSugar.GenConfig})">
             <summary>
             批量更新
             </summary>
             <param name="configs"></param>
             <returns></returns>
         </member>
-        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigSerivce.List(System.String)">
+        <member name="M:SimpleAdmin.Plugin.Gen.IGenConfigService.List(System.String)">
             <summary>
             查询代码生成详细配置列表
             </summary>

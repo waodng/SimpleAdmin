@@ -13,7 +13,7 @@ public class GenConfigController : BaseController
 
     public GenConfigController(IGenConfigService genConfigService)
     {
-        this._genConfigSerivce = genConfigSerivce;
+        this._genConfigService = genConfigService;
     }
 
     /// <summary>

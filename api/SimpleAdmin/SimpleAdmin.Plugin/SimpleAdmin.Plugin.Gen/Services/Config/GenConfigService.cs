@@ -13,7 +13,7 @@ public class GenConfigService : DbRepository<GenConfig>, IGenConfigService
     }
 
     /// <inheritdoc/>
-    public async Task<List<GenConfig>> List(long basicId)
+    public async Task<List<GenConfig>> List(string basicId)
     {
         var configs = await GetListAsync(it => it.BasicId == basicId); //获取配置表相关配置
         return configs.OrderBy(it => it.SortCode).ToList(); //排序一下
