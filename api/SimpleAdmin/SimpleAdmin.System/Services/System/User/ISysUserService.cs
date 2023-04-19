@@ -60,9 +60,9 @@ public partial interface ISysUserService : ITransient
     /// <summary>
     /// 根据用户Id获取用户信息
     /// </summary>
-    /// <param name="Id">用户ID</param>
+    /// <param name="userId">用户ID</param>
     /// <returns>用户信息</returns>
-    Task<SysUser> GetUserById(string Id);
+    Task<SysUser> GetUserById(string userId);
 
     /// <summary>
     ///根据用户账号获取用户ID
