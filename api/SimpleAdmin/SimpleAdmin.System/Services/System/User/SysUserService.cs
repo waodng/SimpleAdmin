@@ -153,7 +153,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
         List<string> buttonCodeList = new();//按钮ID集合
         //获取用户资源集合
         var resourceList = await _relationService.GetRelationListByObjectIdAndCategory(userId, CateGoryConst.Relation_SYS_USER_HAS_RESOURCE);
-        var buttonIdList = new List<userId>();//按钮ID集合
+        var buttonIdList = new List<string>();//按钮ID集合
         if (resourceList.Count == 0)//如果有表示用户单独授权了不走用户角色
         {
             //获取用户角色关系集合
