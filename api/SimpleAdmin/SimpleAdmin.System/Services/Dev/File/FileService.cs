@@ -103,7 +103,7 @@ public class FileService : DbRepository<DevFile>, IFileService
                 if (config != null)
                 {
                     bucketName = config.ConfigValue;// 存储桶名称
-                    storageUrl = await StorageMinio(objectId, file);
+                    (objName, storageUrl) = await StorageMinio(objectId, file);
                 }
                 break;
 
@@ -193,14 +193,14 @@ public class FileService : DbRepository<DevFile>, IFileService
     /// <param name="fileId"></param>
     /// <param name="file"></param>
     /// <returns></returns>
-
-    private async Task<string> StorageMinio(string fileId, IFormFile file)
+    private async Task<(string objName, string downloadUrl)> StorageMinio(string fileId, IFormFile file)
     {
         var minioService = App.GetService<MinioUtils>();
         var now = DateTime.Now.ToString("d");
         var fileSuffix = Path.GetExtension(file.FileName).ToLower(); // 文件后缀
         var fileObjectName = $"{now}/{fileId}{fileSuffix}";//存储后的文件名
-        return await minioService.PutObjectAsync(fileObjectName, file);
+        var downloadUrl = await minioService.PutObjectAsync(fileObjectName, file);
+        return (fileObjectName, downloadUrl);
     }
 
     /// <summary>
