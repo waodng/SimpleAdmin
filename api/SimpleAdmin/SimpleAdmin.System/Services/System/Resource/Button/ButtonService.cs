@@ -12,20 +12,20 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
 
     public ButtonService(ILogger<ButtonService> logger, IResourceService resourceService, IRelationService relationService, IEventPublisher eventPublisher)
     {
-        this._logger = logger;
-        this._resourceService = resourceService;
-        this._relationService = relationService;
-        this._eventPublisher = eventPublisher;
+        _logger = logger;
+        _resourceService = resourceService;
+        _relationService = relationService;
+        _eventPublisher = eventPublisher;
     }
 
     /// <inheritdoc/>
     public async Task<SqlSugarPagedList<SysResource>> Page(ButtonPageInput input)
     {
         var query = Context.Queryable<SysResource>()
-                         .Where(it => it.ParentId == input.ParentId && it.Category == CateGoryConst.Resource_BUTTON)
-                         .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Title.Contains(input.SearchKey) || it.Path.Contains(input.SearchKey))//根据关键字查询
-                         .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")
-                         .OrderBy(it => it.SortCode);//排序
+            .Where(it => it.ParentId == input.ParentId && it.Category == CateGoryConst.Resource_BUTTON)
+            .WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Title.Contains(input.SearchKey) || it.Path.Contains(input.SearchKey))//根据关键字查询
+            .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")
+            .OrderBy(it => it.SortCode);//排序
         var pageInfo = await query.ToPagedListAsync(input.Current, input.Size);//分页
         return pageInfo;
     }
@@ -42,11 +42,11 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
     /// <inheritdoc />
     public async Task<List<string>> AddBatch(ButtonAddInput input)
     {
-        List<SysResource> sysResources = new List<SysResource>();//按钮列表
-        var codeList = new List<string>() { "Add", "Edit", "Delete", "BatchDelete", "BatchEdit" };//code后缀
-        var titleList = new List<string>() { "新增", "编辑", "删除", "批量删除", "批量编辑" };//title前缀
+        var sysResources = new List<SysResource>();//按钮列表
+        var codeList = new List<string>() { "Add", "Edit", "Delete", "BatchDelete", "Import", "Export", "BatchEdit" };//code后缀
+        var titleList = new List<string>() { "新增", "编辑", "删除", "批量删除", "导入", "导出", "批量编辑" };//title前缀
         var idList = new List<string>();//Id列表
-        for (int i = 0; i < codeList.Count; i++)
+        for (var i = 0; i < codeList.Count; i++)
         {
             var id = CommonUtils.GetSingleId();
             sysResources.Add(new SysResource
@@ -84,7 +84,7 @@ public class ButtonService : DbRepository<SysResource>, IButtonService
         //事务
         var result = await itenant.UseTranAsync(async () =>
         {
-            await UpdateAsync(sysResource); //更新按钮
+            await UpdateAsync(sysResource);//更新按钮
         });
         if (result.IsSuccess)//如果成功了
         {
