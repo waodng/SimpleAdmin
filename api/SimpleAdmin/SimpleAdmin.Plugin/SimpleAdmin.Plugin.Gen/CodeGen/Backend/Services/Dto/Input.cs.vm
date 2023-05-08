@@ -16,7 +16,7 @@ public class @Model.PageInput : BasePageInput
   @:/// <summary>
   @:/// 组织机构Id
   @:/// </summary>
-  @:public long OrgId { get; set; }
+  @:public string OrgId { get; set; }
   }
 }
 
@@ -37,7 +37,7 @@ public class @Model.EditInput : @Model.AddInput
     /// Id
     /// </summary>
     [IdNotNull(ErrorMessage = "Id不能为空")]
-    public long Id { get; set; }
+    public string Id { get; set; }
 }
 
 @{OtherInput();
