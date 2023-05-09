@@ -197,10 +197,10 @@ public class @(@Model.ServiceName) : DbRepository<@(@Model.EntityName)>, I@(@Mod
                          @:.Where(exp.ToExpression())
                          }
                          @if(@Model.LeftTree=="org"){
-                         @:.WhereIF(input.OrgId > 0, it => orgIds.Contains(it.@(orgField)))//根据机构ID查询
+                         @:.WhereIF(!string.IsNullOrEmpty(input.OrgId)&&input.OrgId !=SimpleAdminConst.Zero, it => orgIds.Contains(it.@(orgField)))//根据机构ID查询
                          }
                          @if(isTreeList){
-                         @:.WhereIF(input.@(@Model.TreePid) > 0, it => it.@(@Model.TreePid) ==input.@(@Model.TreePid))//父级
+                         @:.WhereIF(!string.IsNullOrEmpty(input.OrgId)&&input.@(@Model.TreePid) != SimpleAdminConst.Zero, it => it.@(@Model.TreePid) ==input.@(@Model.TreePid))//父级
                          }
                          //.WhereIF(!string.IsNullOrEmpty(input.SearchKey), it => it.Name.Contains(input.SearchKey))//根据关键字查询
                          .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}")

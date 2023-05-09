@@ -23,7 +23,7 @@ public class @Model.PageInput : BasePageInput
   @:/// <summary>
   @:/// 父Id
   @:/// </summary>
-  @:public long @Model.TreePid { get; set; }
+  @:public string @Model.TreePid { get; set; }
   }
 }
 
