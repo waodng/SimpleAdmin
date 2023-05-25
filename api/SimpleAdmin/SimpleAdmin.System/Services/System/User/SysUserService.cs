@@ -406,7 +406,7 @@ public class SysUserService : DbRepository<SysUser>, ISysUserService
             {
                 DeleteUserFromRedis(sysUser.Id);//删除用户缓存
                 //删除用户token缓存
-                _simpleCacheService.HashDel<List<TokenInfo>>(CacheConst.Cache_UserToken, new string[] { sysUser.Id.ToString() });
+                _simpleCacheService.HashDel<List<TokenInfo>>(CacheConst.Cache_UserToken, new string[] { sysUser.Id });
             }
         }
     }
