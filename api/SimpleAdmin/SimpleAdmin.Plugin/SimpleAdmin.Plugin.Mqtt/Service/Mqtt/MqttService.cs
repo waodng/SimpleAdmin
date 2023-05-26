@@ -39,7 +39,7 @@ public class MqttService : IMqttService
         if (userName.ToLower() == "$username")
             userName = user.Account;
         else if (userName.ToLower() == "$userid")
-            userName = user.Id.ToString();
+            userName = user.Id;
 
         #endregion 用户名特殊处理
 
