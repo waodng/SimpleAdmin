@@ -13,8 +13,8 @@ public class SessionService : DbRepository<SysUser>, ISessionService
 
     public SessionService(ISimpleCacheService simpleCacheService, IEventPublisher eventPublisher)
     {
-        this._simpleCacheService = simpleCacheService;
-        this._eventPublisher = eventPublisher;
+        _simpleCacheService = simpleCacheService;
+        _eventPublisher = eventPublisher;
     }
 
     /// <inheritdoc/>
@@ -55,7 +55,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <inheritdoc/>
     public SessionAnalysisOutPut Analysis()
     {
-        Dictionary<string, List<TokenInfo>> tokenDic = GetTokenDicFromRedis();//redistoken会话字典信息
+        var tokenDic = GetTokenDicFromRedis();//redistoken会话字典信息
         var tokenInfosList = tokenDic.Values.ToList();//端token列表
         var dicB = new Dictionary<string, List<TokenInfo>>();
         var dicC = new Dictionary<string, List<TokenInfo>>();
@@ -93,7 +93,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     {
         var userId = input.Id;
         //token列表
-        List<TokenInfo> tokenInfos = _simpleCacheService.HashGetOne<List<TokenInfo>>(CacheConst.Cache_UserToken, userId);
+        var tokenInfos = _simpleCacheService.HashGetOne<List<TokenInfo>>(CacheConst.Cache_UserToken, userId);
         //从列表中删除
         _simpleCacheService.HashDel<List<TokenInfo>>(CacheConst.Cache_UserToken, new string[] { userId });
         await NoticeUserLoginOut(userId, tokenInfos);
@@ -124,13 +124,14 @@ public class SessionService : DbRepository<SysUser>, ISessionService
     /// <returns></returns>
     public Dictionary<string, List<TokenInfo>> GetTokenDicFromRedis()
     {
+        var clockSkew = App.GetConfig<int>("JWTSettings:ClockSkew");//获取过期时间容错值(秒)
         //redis获取token信息hash集合,并转成字典
         var bTokenDic = _simpleCacheService.HashGetAll<List<TokenInfo>>(CacheConst.Cache_UserToken).ToDictionary(u => u.Key, u => u.Value);
         if (bTokenDic != null)
         {
             bTokenDic.ForEach(it =>
             {
-                var tokens = it.Value.Where(it => it.TokenTimeout > DateTime.Now).ToList();//去掉登录超时的
+                var tokens = it.Value.Where(it => it.TokenTimeout.AddSeconds(clockSkew) > DateTime.Now).ToList();//去掉登录超时的
                 if (tokens.Count == 0)
                 {
                     //表示都过期了
@@ -171,7 +172,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
             it.TokenRemain = now.GetDiffTime(it.TokenTimeout);//获取时间差
             var tokenSecond = it.TokenTimeout.AddMinutes(-it.Expire).ConvertDateTimeToLong();//颁发时间转为时间戳
             var timeoutSecond = it.TokenTimeout.ConvertDateTimeToLong();//过期时间转为时间戳
-            var tokenRemainPercent = 1 - ((now.ConvertDateTimeToLong() - tokenSecond) * 1.0 / (timeoutSecond - tokenSecond));//求百分比,用现在时间-token颁布时间除以超时时间-token颁布时间
+            var tokenRemainPercent = 1 - (now.ConvertDateTimeToLong() - tokenSecond) * 1.0 / (timeoutSecond - tokenSecond);//求百分比,用现在时间-token颁布时间除以超时时间-token颁布时间
             it.TokenRemainPercent = tokenRemainPercent;
         });
     }
@@ -187,7 +188,7 @@ public class SessionService : DbRepository<SysUser>, ISessionService
             Message = "您已被强制下线!",
             TokenInfos = tokenInfos,
             UserId = userId
-        }); //通知用户下线
+        });//通知用户下线
     }
 
     #endregion 方法
