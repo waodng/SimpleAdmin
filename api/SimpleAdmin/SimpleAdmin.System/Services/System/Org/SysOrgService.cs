@@ -9,7 +9,7 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     public SysOrgService(ISimpleCacheService simpleCacheService, IImportExportService importExportService)
     {
         _simpleCacheService = simpleCacheService;
-        this._importExportService = importExportService;
+        _importExportService = importExportService;
     }
 
     #region 查询
@@ -83,15 +83,22 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     }
 
     /// <inheritdoc />
-    public async Task<List<SysOrg>> Tree(List<string> orgIds = null)
+    public async Task<List<SysOrg>> Tree(List<long> orgIds = null, SysOrgTreeInput treeInput = null)
     {
+        string parentId = SimpleAdminConst.Zero;//父级ID
         //获取所有组织
         var sysOrgs = await GetListAsync();
         if (orgIds != null)
             sysOrgs = GetParentListByIds(sysOrgs, orgIds);//如果组织ID不为空则获取组织ID列表的所有父节点
+        //如果选择器ID不为空则表示是懒加载,只加载子节点
+        if (treeInput != null && treeInput.ParentId != null)
+        {
+            parentId = treeInput.ParentId;
+            sysOrgs = GetSysOrgChildenLazy(sysOrgs, treeInput.ParentId.Value);//获取懒加载下级
+        }
         sysOrgs = sysOrgs.OrderBy(it => it.SortCode).ToList();//排序
         //构建组织树
-        var result = ConstrucOrgTrees(sysOrgs);
+        var result = ConstrucOrgTrees(sysOrgs, parentId);
         return result;
     }
 
@@ -305,8 +312,8 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <summary>
     /// 检查输入参数
     /// </summary>
-    /// <param orgName="sysOrg"></param>
-    /// <param orgName="name">名称</param>
+    /// <param name="sysOrg"></param>
+    /// <param name="name"></param>
     private async Task CheckInput(SysOrg sysOrg, string name)
     {
         //判断分类是否正确
@@ -337,13 +344,12 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <summary>
     /// 根据组织Id列表获取所有父级组织
     /// </summary>
-    /// <param orgName="allOrgList">所有机构列表</param>
-    /// <param orgName="orgIds">机构Id列表</param>
+    /// <param name="allOrgList"></param>
+    /// <param name="orgIds"></param>
     /// <returns></returns>
-
     public List<SysOrg> GetParentListByIds(List<SysOrg> allOrgList, List<string> orgIds)
     {
-        HashSet<SysOrg> sysOrgs = new HashSet<SysOrg>();//结果列表
+        var sysOrgs = new HashSet<SysOrg>();//结果列表
         //遍历组织ID
         orgIds.ForEach(it =>
         {
@@ -357,8 +363,8 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
     /// <summary>
     /// 获取组织所有下级
     /// </summary>
-    /// <param orgName="orgList">组织列表</param>
-    /// <param orgName="parentId">父ID</param>
+    /// <param name="orgList"></param>
+    /// <param name="parentId"></param>
     /// <returns></returns>
     public List<SysOrg> GetSysOrgChilden(List<SysOrg> orgList, string parentId)
     {
@@ -370,6 +376,35 @@ public class SysOrgService : DbRepository<SysOrg>, ISysOrgService
             foreach (var item in orgs)//遍历组织
             {
                 var childen = GetSysOrgChilden(orgList, item.Id);//获取子节点
+                data.AddRange(childen);//添加子节点);
+                data.Add(item);//添加到列表
+            }
+            return data;//返回结果
+        }
+        return new List<SysOrg>();
+    }
+
+    /// <summary>
+    /// 获取组织下级(懒加载)
+    /// </summary>
+    /// <param name="orgList"></param>
+    /// <param name="parentId"></param>
+    /// <returns></returns>
+    public List<SysOrg> GetSysOrgChildenLazy(List<SysOrg> orgList, long parentId)
+    {
+        //找下级组织ID列表
+        var orgs = orgList.Where(it => it.ParentId == parentId).ToList();
+        if (orgs.Count > 0)//如果数量大于0
+        {
+            var data = new List<SysOrg>();
+            foreach (var item in orgs)//遍历组织
+            {
+                var childen = orgList.Where(it => it.ParentId == item.Id).ToList();//获取子节点
+                //遍历子节点
+                childen.ForEach(it =>
+                {
+                    if (!orgList.Any(org => org.ParentId == it.Id)) it.IsLeaf = true;//如果没有下级,则设置为叶子节点
+                });
                 data.AddRange(childen);//添加子节点);
                 data.Add(item);//添加到列表
             }
