@@ -11,7 +11,7 @@ public class SysPositionService : DbRepository<SysPosition>, ISysPositionService
     public SysPositionService(ISimpleCacheService simpleCacheService, ISysOrgService sysOrgService)
     {
         _simpleCacheService = simpleCacheService;
-        this._sysOrgService = sysOrgService;
+        _sysOrgService = sysOrgService;
     }
 
     /// <inheritdoc />
@@ -98,7 +98,7 @@ public class SysPositionService : DbRepository<SysPosition>, ISysPositionService
             {
                 throw Oops.Bah($"请先删除{name}下的用户");
             }
-            //获取用户表有兼任组织的信息
+            //获取用户表有兼任组织的信息 oracle要改成Context.Queryable<SysUser>().Where(it => SqlFunc.Length(it.PositionJson) > 0).Select(it => it.PositionJson).ToListAsync();
             var positionJsons = await Context.Queryable<SysUser>().Where(it => !SqlFunc.IsNullOrEmpty(it.PositionJson)).Select(it => it.PositionJson).ToListAsync();
             if (positionJsons.Count > 0)
             {
